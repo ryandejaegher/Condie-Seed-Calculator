@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Condie Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+    <style>
+        input, select, option {
+        margin-bottom: 10px;
+    }
+    input {
+        padding: 15px;
+        font-size: 16px;
+    }
+    body {
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+</head>
+
+<body class="sans-serif">
+    <div class="container">
+        <form id="farmSavedSeed">
+            <h1>Farm Saved Seed</h1>
+            Select Region:<br>
+            <input type="radio" name="zone" value="zone1/2">Zone 1/2<br>
+            <input type="radio" name="zone" value="zone3/4">Zone 3/4<br>
+
+            Select Your Product:<br>
+            <fieldset id="zone1">
+                <select name="" id="cropType">
+                    <option value="" disabled selected hidden>Please Choose...</option>
+                    <option value="yellow pea">Yellow Pea</option>
+                </select>
+                <select name="" id="varietyType">
+                    <option value="cdc inca">CDC Inca</option>
+                    <option value="93">CDC Athabasca</option>
+                </select><br>
+            </fieldset>
+            Your Average Yield<br>
+            <input type="number" id="averageYield" placeholder="Your Average Yield" value=0><br>
+            Local Commodity Price:<br>
+            <input type="number" id="commodityPrice" placeholder="Local Commodity Price" value=0><br>
+            Cleaning Costs<br>
+            <input type="number" id="cleaningCosts" placeholder="Cleaning Costs" value=0><br>
+            Seeding Rate<br>
+            <input type="number" id="seedingRate" placeholder="Seeding Rate" value=0><br>
+            <h1 id="totalPerBushel">Total Per Bushel</h1>
+        </form>
+        <form id="condieSeed">
+            <h1>Condie Seed</h1>
+            <input type="number" name="" id="" placeholder="Variety Gain">
+            <input type="number" name="" id="" placeholder="Generation Gain">
+            <input type="number" name="" id="" placeholder="Seeding Rate">
+            <input type="number" placeholder="Discount">
+            <h2>Farm saved vs. new seed:</h2>
+        </form>
+
+    </div>
+
+    <script>
+        // Selecting inputs on the page and return them to function
+        function addOptions() {
+            var option1 = qs('#cropType');
+            var option2 = qs('#varietyType');
+            return option2.value;
+        }
+
+        function getInputs() {
+            var inputs = {
+                commodityPrice: qs('#commodityPrice'),
+                cleaningCosts: qs('#cleaningCosts'),
+                seedingRate: qs('#seedingRate'),
+                averageYield: qs('#averageYield')
+            }
+            return inputs
+        }
+
+        document.addEventListener('change', function (event) {
+            var price = qs('#totalPerBushel');
+            var total = getInputs().averageYield.valueAsNumber + getInputs().commodityPrice.valueAsNumber +
+                getInputs().cleaningCosts.valueAsNumber + getInputs().seedingRate.valueAsNumber;
+            console.log(total);
+            price.textContent = `Total Per Bushel $${total + checkZone()}`;
+            addOptions();
+            showDropdown();
+        }, true)
+
+        //This is a shortcut for running document.querySelector
+        function qs(selector) {
+            return document.querySelector(selector);
+        }
+
+        function checkZone() {
+            var zone = document.querySelector('input[name="zone"]:checked');
+            return zone.value;
+        }
+
+        var peaData = (function () {
+            var peas = {
+                inca: {
+                    zone1: 104,
+                    zone3: 100
+                },
+                athabasca: {
+                    zone1: 93,
+                    zone3: 99
+                }
+            }
+            return peas
+        })();
+    </script>
+</body>
+
+</html>

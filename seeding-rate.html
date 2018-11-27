@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<style>
+		body {
+        font-family: sans-serif;
+		width: 100%;
+		font-weight: bold;
+    }
+
+    form {
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        margin: 0 auto;
+        background-color: #fafafa;
+        padding: 20px;
+        margin-top: 20px;
+		border-radius: 4px;
+		box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+    }
+
+	.attention {
+		border: 4px solid lightblue;
+	}
+	.success {
+		border: 4px solid green;
+	}
+
+	form:nth-child(1) {
+		flex-basis: 40%;
+		border-top: 16px solid blue;
+	}
+	
+	form:nth-child(2) {
+		flex-basis: 40%;
+		border-top: 16px solid gold;
+	}
+	form:nth-child(3), form:nth-child(4) {
+		flex-basis: 90%;
+		border-top: 16px solid chartreuse;
+	}
+
+    .wrapper {
+		margin: 0 auto;
+		max-width: 1200px;
+    }
+
+	.container {
+		display: flex;
+        flex-flow: row wrap;
+		justify-items: center;
+	}
+
+    input {
+        padding: 15px;
+        font-size: 16px;
+        border: 1px solid #222;
+        border-radius: 5px;
+    }
+    label {
+        margin: 24px 0px 8px 0px;
+    }
+
+
+    </style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<select name="" id="zone">
+				<option value="" disabled selected>Choose Your Zone</option>
+				<option value="zone1/2" name="zone1/2">Zone 1/2</option>
+				<option value="zone3/4" name="zone3/4">Zone 3/4</option>
+			</select>
+			<select name="" id="cropType">
+				<option value="" disabled selected>Choose Your Crop</option>
+				<option value="peas">Peas</option>
+				<option value="wheat">Spring Wheat</option>
+			</select>
+			<select name="" id="variety">
+				<option value="" disabled selected>Choose Your Variety</option>
+			</select>
+			<select name="" id="newVariety">
+				<option value="" disabled selected>Choose Your Variety</option>
+			</select>
+			<form>
+				<h1>Bin Run Seed</h1>
+
+				<label for="">Today's Commodity Price</label>
+				<input type="number" name="" id="commodityPrice" class="attention">
+
+				<label for="">Seeding Rate</label>
+				<input type="number" name="" id="seedingRate" class="attention">
+
+				<label for="">Cleaning</label>
+				<input type="number" name="" id="cleaningCost" class="attention">
+
+				<label for="">Freight</label>
+				<input type="number" name="" id="freightCost" class="attention">
+
+				<label for="">Testing</label>
+				<input type="number" name="" id="testingCost" class="attention">
+
+				<label for="">Screening Loss</label>
+				<input type="number" name="" id="screeningCost" class="attention">
+
+				<label for="">Total Cost Per Acre (Bin Run)</label>
+				<input type="number" name="" id="totalBinRun" class="success">
+			</form>
+
+			<form>
+				<h1>Certified Seed</h1>
+				<label>New Seed Cost</label>
+				<input type="number" name="" id="certifiedSeedPrice" class="attention">
+
+				<label>Seeding Rate</label>
+				<input type="number" name="" id="certifiedSeedingRate" class="attention">
+
+				<label>Cleaning</label>
+				<input type="number" name="" id="certifiedCleaning">
+
+				<label>Freight</label>
+				<input type="number" name="" id="certifiedFreight">
+
+				<label>Testing</label>
+				<input type="number" name="" id="certifiedTesting">
+
+				<label>Screening Loss</label>
+				<input type="number" name="" id="certifiedScreening">
+
+				<label for="">Total Cost Per Acre (Certified Seed)</label>
+				<input type="number" name="" id="totalCertifiedSeed" class="success">
+			</form>
+			<form>
+				<h2>Certified Seed Use Calculations</h2>
+
+				<label for="">Difference</label>
+				<input type="number" name="" id="difference" class="success">
+
+				<label for="">Your Average Yield</label>
+				<input type="number" name="" id="averageYield">
+
+				<label for="">Current Variety</label>
+				<input type="number" name="" id="currentVariety">
+
+				<label for="">New Variety</label>
+				<input type="number" name="" id="newVariety">
+
+				<label for="">Economic Gain of Certified Seed</label>
+				<input type="number" name="" id="economicGain">
+
+				<label for="">Yield Gain</label>
+				<input type="number" name="" id="yieldGain" class="success">
+
+				<label for="">Gross Gain</label>
+				<input type="number" name="" id="grossGain">
+
+				<label for="">$ Benefit of Certified Seed Use</label>
+				<input type="number" name="" id="certifiedBenefit">
+			</form>
+			<form>
+				<h1>Seeding Rate</h1>
+
+				<label>Plant Density (plants / sq ft.)</label>
+				<input type="number" name="density" id="density" placeholder="" value="0">
+
+				<label>1,000 Kernel Weight (g)</label>
+				<input type="number" name="weight" id="weight" placeholder="" value="0">
+
+				<label>Germination Rate(%)</label>
+				<input type="number" name="germination" id="germination" placeholder="" value="0">
+
+				<label>Emergence Mortality(%)</label>
+				<input type="number" name="mortality" id="mortality" placeholder="" value="0">
+				<h2>Optimal Seeding Rate (lbs/ac)</h2>
+				<h3 id="seedingRateResult">0.0</h3>
+			</form>
+		</div>
+	</div>
+
+
+	/*
+	TODO:
+	Append selected current variety values to current variety field
+	Append selected new variety values to new variety field
+	Create data attributes for seeding rate and value for yield rates
+	Clean up and group functions on the page
+	Add comments to functions
+	Disable selected
+
+	*/
+	<script>
+		/*
+		// CALCULATIONS & FORMULA
+
+		Total Bin Run = seedingRate * (commodityPrice + cleaningCost + freightCost + testingCost + screeningCost)
+		Total Certified Seed = certifiedSeedPrice * seedingRate
+		Difference = Total Certified Seed - Total Bin Run
+		Yield Gain = (Certified Seed Variety - Bin Run Variety + Economic Gain of Certified Seed) * Your Average Yield
+		$/ac Benefit of Certified Seed Use = (Yield Gain * Today's Commidity Price) - Difference Per Acre
+		*/
+
+		var calculateTotalBinRun = function () {
+			//Total Bin Run = seedingRate * (commodityPrice + cleaningCost + freightCost + testingCost + screeningCost)
+			var inputs = getBinRunInputValues();
+			var totalBinRun = inputs.seedingRate * (inputs.commodityPrice + inputs.cleaningCost + inputs.freightCost + inputs.testingCost +
+				inputs.screeningCost);
+			inputs.totalBinRun.value = totalBinRun;
+			console.log(totalBinRun);
+			return totalBinRun
+		}
+
+		var calculateTotalCertifiedSeed = function () {
+			//Total Certified Seed = certifiedSeedPrice * seedingRate
+			var inputs = getCertifiedSeedInputValues();
+			var totalCertifiedSeed = inputs.certifiedSeedPrice * inputs.certifiedSeedingRate;
+			inputs.totalCertifiedSeed.value = totalCertifiedSeed;
+			return totalCertifiedSeed;
+		}
+
+		var calculateYieldGain = function () {
+			var inputs = {
+				currentVariety: qs('#currentVariety'),
+				newVariety: qs('#newVariety'),
+				economicGain: qs('#economicGain'),
+				averageYield: qs('#averageYield'),
+				yieldGain: qs('#yieldGain')
+			}
+			var yieldGain = (inputs.newVariety.valueAsNumber - inputs.currentVariety.valueAsNumber + inputs.economicGain.valueAsNumber) *
+				inputs.averageYield.valueAsNumber;
+			console.log(yieldGain);
+			inputs.yieldGain.value = yieldGain;
+			return yieldGain
+		}
+
+		var calculateGrossGain = function () {
+			return calculateYieldGain() * getBinRunInputValues().commodityPrice;
+		}
+
+		var calculateCertifiedBenefit = function () {
+			return calculateGrossGain() - calculateDifference()
+		}
+
+		var calculateDifference = function () {
+			//Difference = Total Certified Seed - Total Bin Run
+			var difference = qs('#difference');
+			difference.value = calculateTotalCertifiedSeed() - calculateTotalBinRun();
+			return difference;
+		}
+
+		//Helper function to create shorthand for document.querySelector
+		var qs = function (qs) {
+			return document.querySelector(qs);
+		}
+
+		//Get the inputs from the bin run form and returns an object
+		var getBinRunInputs = function () {
+			var inputs = {
+				commodityPrice: qs('#commodityPrice'),
+				seedingRate: qs('#seedingRate'),
+				cleaningCost: qs('#cleaningCost'),
+				freightCost: qs('#freightCost'),
+				testingCost: qs('#testingCost'),
+				screeningCost: qs('#screeningCost'),
+				totalBinRun: qs('#totalBinRun')
+			};
+			return inputs;
+		}
+
+		//Get the inputs from getBinRunInputs and return them as values
+		var getBinRunInputValues = function () {
+			var inputValues = {
+				commodityPrice: getBinRunInputs().commodityPrice.valueAsNumber,
+				seedingRate: getBinRunInputs().seedingRate.valueAsNumber,
+				cleaningCost: getBinRunInputs().cleaningCost.valueAsNumber,
+				freightCost: getBinRunInputs().cleaningCost.valueAsNumber,
+				testingCost: getBinRunInputs().testingCost.valueAsNumber,
+				screeningCost: getBinRunInputs().screeningCost.valueAsNumber,
+				totalBinRun: getBinRunInputs().totalBinRun
+			}
+			return inputValues;
+		}
+
+		//Get the inputs from the certified seed form and returns an object
+		var getCertifiedSeedInputs = function () {
+			var inputs = {
+				certifiedSeedPrice: qs('#certifiedSeedPrice'),
+				certifiedSeedingRate: qs('#certifiedSeedingRate'),
+				certifiedCleaning: qs('#certifiedCleaning'),
+				certifiedFreight: qs('#certifiedFreight'),
+				certifiedTesting: qs('#certifiedTesting'),
+				certifiedScreening: qs('#certifiedScreening'),
+				totalCertifiedSeed: qs('#totalCertifiedSeed')
+			};
+			return inputs;
+		}
+
+		//Get the inputs from getCertifiedSeedInputValues and return them as values
+		var getCertifiedSeedInputValues = function () {
+			var inputs = getCertifiedSeedInputs();
+			var values = {
+				certifiedSeedPrice: inputs.certifiedSeedPrice.valueAsNumber,
+				certifiedSeedingRate: inputs.certifiedSeedingRate.valueAsNumber,
+				certifiedCleaning: inputs.certifiedCleaning.valueAsNumber,
+				certifiedFreight: inputs.certifiedFreight.valueAsNumber,
+				certifiedTesting: inputs.certifiedTesting.valueAsNumber,
+				certifiedScreening: inputs.certifiedScreening.valueAsNumber,
+				totalCertifiedSeed: inputs.totalCertifiedSeed
+			};
+			return values;
+		}
+
+		//Get the inputs from the seeding rate form and returns an object
+		var getSeedingRateInputs = function () {
+			var inputs = {
+				density: qs('#density'),
+				weight: qs('#weight'),
+				germination: qs('#germination'),
+				mortality: qs('#mortality')
+			};
+			return inputs;
+		}
+
+		//Get the inputs from getSeedingRateInputs and return them as values
+		var getSeedingRateInputValues = function () {
+			var inputValues = {
+				density: getSeedingRateInputs().density.valueAsNumber,
+				weight: getSeedingRateInputs().weight.valueAsNumber,
+				germination: getSeedingRateInputs().germination.valueAsNumber / 100,
+				mortality: getSeedingRateInputs().mortality.valueAsNumber / 100
+			}
+			return inputValues;
+		}
+
+		var getSeedUseCalculations = function () {
+			var inputs = {
+				difference: qs('#difference'),
+				averageYield: qs('#averageYield'),
+				currentVariety: qs('#currentVariety'),
+				newVariety: qs('#newVariety'),
+				economicGain: qs('#economicGain'),
+				yieldGain: qs('#yieldGain'),
+				grossGain: qs('#grossGain'),
+				certifiedBenefit: qs('#certifiedBenefit')
+			};
+			return inputs;
+		}
+/*
+		var getSeedUseValues = function () {
+			var inputValues = {
+				difference: getSeedUseCalculations().difference
+				averageYield: getSeedUseCalculations().averageYield.valueAsNumber
+				currentVariety: getSeedUseCalculations().currentVariety.valueAsNumber
+				newVariety: getSeedUseCalculations().newVariety.valueAsNumber
+				economicGain: getSeedUseCalculations().economicGain.valueAsNumber
+				yieldGain: getSeedUseCalculations().yieldGain
+				grossGain: getSeedUseCalculations().grossGain
+				certifiedBenefit: getSeedUseCalculations().certifiedBenefit
+			}
+		}
+*/
+		//Checks value of Zone dropdown and returns selected option
+		var checkZone = function () {
+			var zoneDropDown = qs('#zone');
+			return zoneDropDown.selectedOptions[0].value;
+		}
+
+		//Checks value of Crop dropdown and returns selected option
+		var checkCrop = function () {
+			var cropDropDown = qs('#cropType')
+			return cropDropDown.selectedOptions[0].value;
+		}
+		
+		//Gets the variety dropdown 
+		var checkVariety = function () {
+			var variety = qs('#variety');
+			return variety;
+		}
+		
+		//Gets the new variety dropdown
+		var checkNewVariety = function () {
+			var variety = qs('#newVariety');
+			return variety;
+		}
+
+		/*
+		This function is used to check the value of the crop dropdown. 
+		Based on which which crop is selected it will pass a different
+		argument to get populate the variety dropdown menu with new variety choices.
+		*/
+		var updateVarietyOptions = function () {
+			if (checkCrop() === 'peas') {
+				return getVariety(cropData.peas);
+			} else if (checkCrop() === 'wheat') {
+				return getVariety(cropData.wheat);
+			}
+		}
+
+
+		var getSelectedVarietyValues = function () {
+			var currentVariety = getSeedUseCalculations().currentVariety;
+			console.log(currentVariety);
+			currentVariety.value = checkVariety().selectedOptions[0].value;
+		}
+
+		//cropData holds arrays of products and includes the name, zone yield rates, and certified seeding rate
+		var cropData = (function () {
+			var peas = [{
+					name: 'AAC Carver',
+					zone1: 101,
+					zone3: 105,
+					certifiedSeedingRate: 6
+				},
+				{
+					name: 'CDC Athabasca',
+					zone1: 102,
+					zone3: 104,
+					certifiedSeedingRate: 10
+				}
+			];
+			var wheat = [{
+					name: 'Wheat 1',
+					zone1: 103,
+					zone3: 104
+				},
+				{
+					name: 'Wheat 2',
+					zone1: 103,
+					zone3: 105
+				}
+			]
+			return {
+				peas: peas,
+				wheat: wheat
+			};
+		})();
+
+
+		//Iterate over cropData and add options to variety dropdown menu
+		var getVariety = function (variety) {
+			checkVariety().length = 1;
+			checkNewVariety().length = 1;
+
+			if (checkZone() === "zone1/2") {
+				for (var i = 0; i < variety.length; i++) {
+					checkVariety().innerHTML +=
+						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}% </option>`;
+				}
+				for (var i = 0; i < variety.length; i++) {
+					checkNewVariety().innerHTML +=
+						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}% </option>`;
+				}
+
+			} else if (checkZone() === "zone3/4") {
+				console.log('zone 3 selected');
+				for (var i = 0; i < variety.length; i++) {
+					checkVariety().innerHTML +=
+						`<option value="${variety[i].zone3}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone3}%</option>`;
+				}
+				for (var i = 0; i < variety.length; i++) {
+					checkNewVariety().innerHTML +=
+						`<option value="${variety[i].zone3}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone3}%</option>`;
+				}
+			}
+		}
+
+
+		//Append seeding rate from Optimal Seeding Rate to Seeding Rate input on Bin Run and Certified Seed Input
+		var calculateOptimalSeedingRate = function () {
+			var inputValues = getSeedingRateInputValues();
+			var seedingRateResult = qs('#seedingRateResult');
+			var optimalSeedingRate = (inputValues.density * inputValues.weight / (inputValues.germination -
+				inputValues.mortality) / 10.418).toFixed(1);
+			if (isNaN(optimalSeedingRate) === true || optimalSeedingRate == Infinity) {
+				return
+			} else {
+				seedingRateResult.textContent = optimalSeedingRate;
+				return optimalSeedingRate;
+			}
+		}
+
+		document.addEventListener('change', function (event) {
+			calculateOptimalSeedingRate();
+			calculateTotalBinRun();
+			calculateTotalCertifiedSeed();
+			calculateDifference();
+			calculateYieldGain();
+			calculateGrossGain();
+
+			if (event.target.matches('#variety')) {
+				getSelectedVarietyValues();
+			}
+			if (event.target.matches('#zone') || event.target.matches('#cropType')) {
+				console.log(event.target);
+				updateVarietyOptions();
+			}
+		});
+	</script>
+</body>
+
+</html>
