@@ -207,14 +207,14 @@
 	Clean up and group functions on the page
 	Convert the selected varieties yield rate from percentage to decimal value
 	Move variety inputs inline to appropriate form
-	Add headers for functions 
+	Add headers for functions
 	Is it possible to update disabled inputs?
 	Change total input fields to an inline h2 tag
-	Add placeholders to inputs 
+	Add placeholders to inputs
 	Add inline link to go to "Seeding Rate Calculator"
 
 
-	DONE: 
+	DONE:
 	Create data attributes for seeding rate and value for yield rates
 	Add comments to functions
 	Disable selected certified seed inputs
@@ -388,6 +388,13 @@
 					}
 				}
 		*/
+
+		/******
+		
+		FUNCTIONS FOR CHECKING AND UPDATING THE DROPDOWN MENUS
+		
+		*******/
+
 		//Checks value of Zone dropdown and returns selected option
 		var checkZone = function () {
 			var zoneDropDown = qs('#zone');
@@ -432,6 +439,40 @@
 			currentVariety.value = checkVariety().selectedOptions[0].value;
 		}
 
+		//Iterate over cropData and add options to variety dropdown menu
+		var getVariety = function (variety) {
+			checkVariety().length = 1;
+			checkNewVariety().length = 1;
+
+			if (checkZone() === "zone1/2") {
+				for (var i = 0; i < variety.length; i++) {
+					checkVariety().innerHTML +=
+						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}% </option>`;
+				}
+				for (var i = 0; i < variety.length; i++) {
+					checkNewVariety().innerHTML +=
+						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}% </option>`;
+				}
+
+			} else if (checkZone() === "zone3/4") {
+				console.log('zone 3 selected');
+				for (var i = 0; i < variety.length; i++) {
+					checkVariety().innerHTML +=
+						`<option value="${variety[i].zone3}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone3}%</option>`;
+				}
+				for (var i = 0; i < variety.length; i++) {
+					checkNewVariety().innerHTML +=
+						`<option value="${variety[i].zone3}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone3}%</option>`;
+				}
+			}
+		}
+
+
+		/******
+
+		THIS SECTION HOLDS ALL OF THE CROP DATA
+
+		******/
 		//cropData holds arrays of products and includes the name, zone yield rates, and certified seeding rate
 		var cropData = (function () {
 			var peas = [{
@@ -464,36 +505,6 @@
 			};
 		})();
 
-
-		//Iterate over cropData and add options to variety dropdown menu
-		var getVariety = function (variety) {
-			checkVariety().length = 1;
-			checkNewVariety().length = 1;
-
-			if (checkZone() === "zone1/2") {
-				for (var i = 0; i < variety.length; i++) {
-					checkVariety().innerHTML +=
-						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}% </option>`;
-				}
-				for (var i = 0; i < variety.length; i++) {
-					checkNewVariety().innerHTML +=
-						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}% </option>`;
-				}
-
-			} else if (checkZone() === "zone3/4") {
-				console.log('zone 3 selected');
-				for (var i = 0; i < variety.length; i++) {
-					checkVariety().innerHTML +=
-						`<option value="${variety[i].zone3}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone3}%</option>`;
-				}
-				for (var i = 0; i < variety.length; i++) {
-					checkNewVariety().innerHTML +=
-						`<option value="${variety[i].zone3}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone3}%</option>`;
-				}
-			}
-		}
-
-
 		//Append seeding rate from Optimal Seeding Rate to Seeding Rate input on Bin Run and Certified Seed Input
 		var calculateOptimalSeedingRate = function () {
 			var inputValues = getSeedingRateInputValues();
@@ -508,6 +519,12 @@
 			}
 		}
 
+		/******
+		
+		EVENT LISTENERS
+
+		******/
+		//Event listener on document listening for any changes to inputs and dropdowns
 		document.addEventListener('change', function (event) {
 			calculateOptimalSeedingRate();
 			calculateTotalBinRun();
