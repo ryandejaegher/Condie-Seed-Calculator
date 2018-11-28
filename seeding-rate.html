@@ -33,16 +33,16 @@
 		border: 4px solid green;
 	}
 
-	form:nth-child(1) {
+	form:nth-child(2) {
 		flex-basis: 40%;
 		border-top: 16px solid blue;
 	}
 	
-	form:nth-child(2) {
+	form:nth-child(3) {
 		flex-basis: 40%;
 		border-top: 16px solid gold;
 	}
-	form:nth-child(3), form:nth-child(4) {
+	form:nth-child(4), form:nth-child(5) {
 		flex-basis: 90%;
 		border-top: 16px solid chartreuse;
 	}
@@ -55,7 +55,13 @@
 	.container {
 		display: flex;
         flex-flow: row wrap;
-		justify-items: center;
+		justify-content: center;
+	}
+
+	#dropdown {
+		flex-basis: 100%;
+		width: 100%;
+		margin: 0 auto;
 	}
 
     input {
@@ -75,22 +81,24 @@
 <body>
 	<div class="wrapper">
 		<div class="container">
-			<select name="" id="zone">
-				<option value="" disabled selected>Choose Your Zone</option>
-				<option value="zone1/2" name="zone1/2">Zone 1/2</option>
-				<option value="zone3/4" name="zone3/4">Zone 3/4</option>
-			</select>
-			<select name="" id="cropType">
-				<option value="" disabled selected>Choose Your Crop</option>
-				<option value="peas">Peas</option>
-				<option value="wheat">Spring Wheat</option>
-			</select>
-			<select name="" id="variety">
-				<option value="" disabled selected>Choose Your Variety</option>
-			</select>
-			<select name="" id="newVariety">
-				<option value="" disabled selected>Choose Your Variety</option>
-			</select>
+			<div id="dropdown">
+				<select name="" id="zone">
+					<option value="" disabled selected>Choose Your Zone</option>
+					<option value="zone1/2" name="zone1/2">Zone 1/2</option>
+					<option value="zone3/4" name="zone3/4">Zone 3/4</option>
+				</select>
+				<select name="" id="cropType">
+					<option value="" disabled selected>Choose Your Crop</option>
+					<option value="peas">Peas</option>
+					<option value="wheat">Spring Wheat</option>
+				</select>
+				<select name="" id="variety">
+					<option value="" disabled selected>Choose Your Current Variety</option>
+				</select>
+				<select name="" id="newVariety">
+					<option value="" disabled selected>Choose Your New Variety</option>
+				</select>
+			</div>
 			<form>
 				<h1>Bin Run Seed</h1>
 
@@ -125,16 +133,16 @@
 				<input type="number" name="" id="certifiedSeedingRate" class="attention">
 
 				<label>Cleaning</label>
-				<input type="number" name="" id="certifiedCleaning">
+				<input type="number" name="" id="certifiedCleaning" placeholder="included" disabled>
 
 				<label>Freight</label>
-				<input type="number" name="" id="certifiedFreight">
+				<input type="number" name="" id="certifiedFreight" placeholder="included" disabled>
 
 				<label>Testing</label>
-				<input type="number" name="" id="certifiedTesting">
+				<input type="number" name="" id="certifiedTesting" placeholder="included" disabled>
 
 				<label>Screening Loss</label>
-				<input type="number" name="" id="certifiedScreening">
+				<input type="number" name="" id="certifiedScreening" placeholder="included" disabled>
 
 				<label for="">Total Cost Per Acre (Certified Seed)</label>
 				<input type="number" name="" id="totalCertifiedSeed" class="success">
@@ -353,20 +361,20 @@
 			};
 			return inputs;
 		}
-/*
-		var getSeedUseValues = function () {
-			var inputValues = {
-				difference: getSeedUseCalculations().difference
-				averageYield: getSeedUseCalculations().averageYield.valueAsNumber
-				currentVariety: getSeedUseCalculations().currentVariety.valueAsNumber
-				newVariety: getSeedUseCalculations().newVariety.valueAsNumber
-				economicGain: getSeedUseCalculations().economicGain.valueAsNumber
-				yieldGain: getSeedUseCalculations().yieldGain
-				grossGain: getSeedUseCalculations().grossGain
-				certifiedBenefit: getSeedUseCalculations().certifiedBenefit
-			}
-		}
-*/
+		/*
+				var getSeedUseValues = function () {
+					var inputValues = {
+						difference: getSeedUseCalculations().difference
+						averageYield: getSeedUseCalculations().averageYield.valueAsNumber
+						currentVariety: getSeedUseCalculations().currentVariety.valueAsNumber
+						newVariety: getSeedUseCalculations().newVariety.valueAsNumber
+						economicGain: getSeedUseCalculations().economicGain.valueAsNumber
+						yieldGain: getSeedUseCalculations().yieldGain
+						grossGain: getSeedUseCalculations().grossGain
+						certifiedBenefit: getSeedUseCalculations().certifiedBenefit
+					}
+				}
+		*/
 		//Checks value of Zone dropdown and returns selected option
 		var checkZone = function () {
 			var zoneDropDown = qs('#zone');
@@ -378,13 +386,13 @@
 			var cropDropDown = qs('#cropType')
 			return cropDropDown.selectedOptions[0].value;
 		}
-		
+
 		//Gets the variety dropdown 
 		var checkVariety = function () {
 			var variety = qs('#variety');
 			return variety;
 		}
-		
+
 		//Gets the new variety dropdown
 		var checkNewVariety = function () {
 			var variety = qs('#newVariety');
