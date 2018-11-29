@@ -230,6 +230,7 @@
 		$/ac Benefit of Certified Seed Use = (Yield Gain * Today's Commidity Price) - Difference Per Acre
 		*/
 
+
 		var calculateTotalBinRun = function () {
 			//Total Bin Run = seedingRate * (commodityPrice + cleaningCost + freightCost + testingCost + screeningCost)
 			var inputs = getBinRunInputValues();
@@ -249,18 +250,12 @@
 		}
 
 		var calculateYieldGain = function () {
-			var inputs = {
-				currentVariety: qs('#currentVariety'),
-				newVariety: qs('#newVarietyInput'),
-				economicGain: qs('#economicGain'),
-				averageYield: qs('#averageYield'),
-				yieldGain: qs('#yieldGain')
-			}
-			var yieldGain = (inputs.newVariety.valueAsNumber - inputs.currentVariety.valueAsNumber + inputs.economicGain.valueAsNumber) *
-				inputs.averageYield.valueAsNumber;
+			var inputs = getSeedUseValues();
+			var yieldGain = (inputs.newVariety - inputs.currentVariety + inputs.economicGain) *
+				inputs.averageYield;
 			console.log(yieldGain);
 			inputs.yieldGain.value = yieldGain;
-			return yieldGain
+			return yieldGain;
 		}
 
 		var calculateGrossGain = function () {
@@ -367,27 +362,26 @@
 				difference: qs('#difference'),
 				averageYield: qs('#averageYield'),
 				currentVariety: qs('#currentVariety'),
-				newVariety: qs('#newVariety'),
+				newVariety: qs('#newVarietyInput'),
 				economicGain: qs('#economicGain'),
 				yieldGain: qs('#yieldGain'),
 				certifiedBenefit: qs('#certifiedBenefit')
 			};
 			return inputs;
 		}
-		/*
-				var getSeedUseValues = function () {
-					var inputValues = {
-						difference: getSeedUseCalculations().difference
-						averageYield: getSeedUseCalculations().averageYield.valueAsNumber
-						currentVariety: getSeedUseCalculations().currentVariety.valueAsNumber
-						newVariety: getSeedUseCalculations().newVariety.valueAsNumber
-						economicGain: getSeedUseCalculations().economicGain.valueAsNumber
-						yieldGain: getSeedUseCalculations().yieldGain
-						grossGain: getSeedUseCalculations().grossGain
-						certifiedBenefit: getSeedUseCalculations().certifiedBenefit
-					}
-				}
-		*/
+		var getSeedUseValues = function () {
+			var inputValues = {
+				difference: getSeedUseCalculations().difference,
+				averageYield: getSeedUseCalculations().averageYield.valueAsNumber,
+				currentVariety: getSeedUseCalculations().currentVariety.valueAsNumber,
+				newVariety: getSeedUseCalculations().newVariety.valueAsNumber,
+				economicGain: getSeedUseCalculations().economicGain.valueAsNumber,
+				yieldGain: getSeedUseCalculations().yieldGain,
+				certifiedBenefit: getSeedUseCalculations().certifiedBenefit
+			};
+			return inputValues;
+		}
+
 
 		/******
 		
@@ -432,7 +426,6 @@
 			}
 		}
 
-
 		var getSelectedVarietyValues = function () {
 			var currentVariety = getSeedUseCalculations().currentVariety;
 			console.log(currentVariety);
@@ -466,7 +459,6 @@
 				}
 			}
 		}
-
 
 		/******
 
