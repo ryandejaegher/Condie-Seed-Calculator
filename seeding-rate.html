@@ -49,7 +49,6 @@
     .wrapper {
 		margin: 0 auto;
 		max-width: 1200px;
-		outline: 1px solid red;
     }
 
 	.container {
@@ -92,8 +91,8 @@
 			<div id="dropdown">
 				<select name="" id="zone">
 					<option value="" disabled selected>Choose Your Zone</option>
-					<option value="zone1/2" name="zone1/2">Zone 1/2</option>
-					<option value="zone3/4" name="zone3/4">Zone 3/4</option>
+					<option value="zone1/2">Zone 1/2</option>
+					<option value="zone3/4">Zone 3/4</option>
 				</select>
 				<select name="" id="cropType">
 					<option value="" disabled selected>Choose Your Crop</option>
@@ -174,32 +173,32 @@
 				<input type="number" name="" placeholder="0" id="economicGain">
 
 				<label for="">Yield Gain</label>
-				<input type="number" name="" id="yieldGain" class="">
+				<input type="number" name="" placeholder="0" id="yieldGain" class="">
 
 				<label for="">$ Benefit of Certified Seed Use</label>
-				<input type="number" name="" id="certifiedBenefit">
+				<input type="number" name="" placeholder="0" id="certifiedBenefit">
 			</form>
 			<form>
 				<h1>Seeding Rate</h1>
 
 				<label>Plant Density (plants / sq ft.)</label>
-				<input type="number" name="density" id="density" placeholder="" value="0">
+				<input type="number" name="density" id="density" placeholder="0" value="">
 
 				<label>1,000 Kernel Weight (g)</label>
-				<input type="number" name="weight" id="weight" placeholder="" value="0">
+				<input type="number" name="weight" id="weight" placeholder="0" value="">
 
 				<label>Germination Rate(%)</label>
-				<input type="number" name="germination" id="germination" placeholder="" value="0">
+				<input type="number" name="germination" id="germination" placeholder="0" value="">
 
 				<label>Emergence Mortality(%)</label>
-				<input type="number" name="mortality" id="mortality" placeholder="" value="0">
+				<input type="number" name="mortality" id="mortality" placeholder="0" value="">
 				<h2>Optimal Seeding Rate (lbs/ac)</h2>
 				<h3 id="seedingRateResult">0.0</h3>
 			</form>
 		</div>
 	</div>
 
-
+<!--
 	/*
 	TODO:
 	Append selected current variety values to current variety field
@@ -219,6 +218,8 @@
 	Add comments to functions
 	Disable selected certified seed inputs
 	*/
+
+-->
 	<script>
 		/*
 		// CALCULATIONS & FORMULA
@@ -367,10 +368,10 @@
 
 		var calculateYieldGain = function () {
 			var inputs = getSeedUseInputValues();
-			var yieldGain = (inputs.newVariety - inputs.currentVariety + inputs.economicGain) *
+			var yieldGain = ((inputs.newVariety/100) - (inputs.currentVariety/100) + inputs.economicGain) *
 				inputs.averageYield;
 			console.log(yieldGain);
-			inputs.yieldGain.value = yieldGain;
+			inputs.yieldGain.value = yieldGain.toFixed(2);
 			return yieldGain;
 		}
 
@@ -381,6 +382,8 @@
 		var calculateCertifiedBenefit = function () {
 			// $/ac Benefit of Certified Seed Use = (Yield Gain * Today's Commidity Price) - Difference Per Acre
 			var inputs = getSeedUseInputValues()
+			inputs.certifiedBenefit.value = ((calculateYieldGain() * getBinRunInputValues().commodityPrice) -
+				calculateDifference()).toFixed(2);
 			return (calculateYieldGain() * getBinRunInputValues().commodityPrice) - calculateDifference();
 		}
 
@@ -445,11 +448,11 @@
 			if (checkZone() === "zone1/2") {
 				for (var i = 0; i < variety.length; i++) {
 					checkVariety().innerHTML +=
-						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}% </option>`;
+						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}%</option>`;
 				}
 				for (var i = 0; i < variety.length; i++) {
 					checkNewVariety().innerHTML +=
-						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}% </option>`;
+						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}%</option>`;
 				}
 
 			} else if (checkZone() === "zone3/4") {
