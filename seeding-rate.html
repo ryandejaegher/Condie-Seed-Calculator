@@ -75,7 +75,7 @@
     input {
         padding: 15px;
         font-size: 16px;
-        border: 1px solid #222;
+        border: 1px solid #bbb;
         border-radius: 5px;
     }
     label {
@@ -141,16 +141,16 @@
 				<input type="number" name="" placeholder="0" id="certifiedSeedingRate" class="">
 
 				<label>Cleaning</label>
-				<input type="number" name="" placeholder="0" id="certifiedCleaning" placeholder="included" disabled>
+				<input type="number" name="" id="certifiedCleaning" placeholder="included" disabled>
 
 				<label>Freight</label>
-				<input type="number" name="" placeholder="0" id="certifiedFreight" placeholder="included" disabled>
+				<input type="number" name="" id="certifiedFreight" placeholder="included" disabled>
 
 				<label>Testing</label>
-				<input type="number" name="" placeholder="0" id="certifiedTesting" placeholder="included" disabled>
+				<input type="number" name="" id="certifiedTesting" placeholder="included" disabled>
 
 				<label>Screening Loss</label>
-				<input type="number" name="" placeholder="0" id="certifiedScreening" placeholder="included" disabled>
+				<input type="number" name="" id="certifiedScreening" placeholder="included" disabled>
 
 				<label for="">Total Cost Per Acre (Certified Seed)</label>
 				<input type="number" name="" placeholder="0" id="totalCertifiedSeed" class="">
@@ -249,30 +249,6 @@
 			return totalCertifiedSeed;
 		}
 
-		var calculateYieldGain = function () {
-			var inputs = getSeedUseValues();
-			var yieldGain = (inputs.newVariety - inputs.currentVariety + inputs.economicGain) *
-				inputs.averageYield;
-			console.log(yieldGain);
-			inputs.yieldGain.value = yieldGain;
-			return yieldGain;
-		}
-
-		var calculateGrossGain = function () {
-			return calculateYieldGain() * getBinRunInputValues().commodityPrice;
-		}
-
-		var calculateCertifiedBenefit = function () {
-			return calculateGrossGain() - calculateDifference()
-		}
-
-		var calculateDifference = function () {
-			//Difference = Total Certified Seed - Total Bin Run
-			var difference = qs('#difference');
-			difference.value = calculateTotalCertifiedSeed() - calculateTotalBinRun();
-			return difference;
-		}
-
 		//Helper function to create shorthand for document.querySelector
 		var qs = function (qs) {
 			return document.querySelector(qs);
@@ -357,7 +333,7 @@
 			return inputValues;
 		}
 
-		var getSeedUseCalculations = function () {
+		var getSeedUseInputs = function () {
 			var inputs = {
 				difference: qs('#difference'),
 				averageYield: qs('#averageYield'),
@@ -369,18 +345,45 @@
 			};
 			return inputs;
 		}
-		var getSeedUseValues = function () {
+		var getSeedUseInputValues = function () {
 			var inputValues = {
-				difference: getSeedUseCalculations().difference,
-				averageYield: getSeedUseCalculations().averageYield.valueAsNumber,
-				currentVariety: getSeedUseCalculations().currentVariety.valueAsNumber,
-				newVariety: getSeedUseCalculations().newVariety.valueAsNumber,
-				economicGain: getSeedUseCalculations().economicGain.valueAsNumber,
-				yieldGain: getSeedUseCalculations().yieldGain,
-				certifiedBenefit: getSeedUseCalculations().certifiedBenefit
+				difference: getSeedUseInputs().difference,
+				averageYield: getSeedUseInputs().averageYield.valueAsNumber,
+				currentVariety: getSeedUseInputs().currentVariety.valueAsNumber,
+				newVariety: getSeedUseInputs().newVariety.valueAsNumber,
+				economicGain: getSeedUseInputs().economicGain.valueAsNumber,
+				yieldGain: getSeedUseInputs().yieldGain,
+				certifiedBenefit: getSeedUseInputs().certifiedBenefit
 			};
 			return inputValues;
 		}
+
+		var calculateDifference = function () {
+			//Difference = Total Certified Seed - Total Bin Run
+			var inputs = getSeedUseInputs();
+			inputs.difference.value = calculateTotalCertifiedSeed() - calculateTotalBinRun();
+			return inputs.difference.value;
+		}
+
+		var calculateYieldGain = function () {
+			var inputs = getSeedUseInputValues();
+			var yieldGain = (inputs.newVariety - inputs.currentVariety + inputs.economicGain) *
+				inputs.averageYield;
+			console.log(yieldGain);
+			inputs.yieldGain.value = yieldGain;
+			return yieldGain;
+		}
+
+		var calculateGrossGain = function () {
+			return calculateYieldGain() * getBinRunInputValues().commodityPrice;
+		}
+
+		var calculateCertifiedBenefit = function () {
+			// $/ac Benefit of Certified Seed Use = (Yield Gain * Today's Commidity Price) - Difference Per Acre
+			var inputs = getSeedUseInputValues()
+			return (calculateYieldGain() * getBinRunInputValues().commodityPrice) - calculateDifference();
+		}
+
 
 
 		/******
@@ -427,9 +430,11 @@
 		}
 
 		var getSelectedVarietyValues = function () {
-			var currentVariety = getSeedUseCalculations().currentVariety;
-			console.log(currentVariety);
+			var currentVariety = getSeedUseInputs().currentVariety;
+			var newVariety = getSeedUseInputs().newVariety;
 			currentVariety.value = checkVariety().selectedOptions[0].value;
+			newVariety.value = checkNewVariety().selectedOptions[0].value;
+			console.log(newVariety.value);
 		}
 
 		//Iterate over cropData and add options to variety dropdown menu
@@ -523,8 +528,9 @@
 			calculateTotalCertifiedSeed();
 			calculateDifference();
 			calculateYieldGain();
+			calculateCertifiedBenefit();
 
-			if (event.target.matches('#variety')) {
+			if (event.target.matches('#variety') || event.target.matches('#newVariety')) {
 				getSelectedVarietyValues();
 			}
 			if (event.target.matches('#zone') || event.target.matches('#cropType')) {
