@@ -2142,8 +2142,16 @@ var cropData = (function () {
 		greenFieldPea: greenFieldPea,
 		flax: flax,
 		oats: oats,
-		redLentil: redLentil,
-		canary: canary,
+        redLentil: redLentil,
+        greenLentil: greenLentil,
+        canary: canary,
+        cwrs: cwrs,
+        cps: cps,
+        cnhr: cnhr,
+        softWhiteSpringWheat: softWhiteSpringWheat,
+        canadaWesternSpecialPurposeWheat: canadaWesternSpecialPurposeWheat,
+        hardWhiteSpringWheat: hardWhiteSpringWheat,
+        canadaWesternAmberDurum: canadaWesternAmberDurum
 		
 
 
