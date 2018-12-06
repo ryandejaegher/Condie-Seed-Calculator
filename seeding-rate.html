@@ -91,8 +91,8 @@
 			<div id="dropdown">
 				<select name="" id="zone">
 					<option value="" disabled selected>Choose Your Zone</option>
-					<option value="zone1/2">Zone 1/2</option>
-					<option value="zone3/4">Zone 3/4</option>
+					<option value=zone1>Zone 1/2</option>
+					<option value=zone3>Zone 3/4</option>
 				</select>
 				<select name="" id="cropType">
 					<option value="" disabled selected>Choose Your Crop</option>
@@ -198,7 +198,7 @@
 		</div>
 	</div>
 
-<!--
+	<!--
 	/*
 	TODO:
 	Append selected current variety values to current variety field
@@ -368,7 +368,7 @@
 
 		var calculateYieldGain = function () {
 			var inputs = getSeedUseInputValues();
-			var yieldGain = ((inputs.newVariety/100) - (inputs.currentVariety/100) + inputs.economicGain) *
+			var yieldGain = ((inputs.newVariety / 100) - (inputs.currentVariety / 100) + inputs.economicGain) *
 				inputs.averageYield;
 			console.log(yieldGain);
 			inputs.yieldGain.value = yieldGain.toFixed(2);
@@ -445,7 +445,7 @@
 			checkVariety().length = 1;
 			checkNewVariety().length = 1;
 
-			if (checkZone() === "zone1/2") {
+			if (checkZone() === zone1) {
 				for (var i = 0; i < variety.length; i++) {
 					checkVariety().innerHTML +=
 						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}%</option>`;
@@ -455,7 +455,7 @@
 						`<option value="${variety[i].zone1}" data-seeding-rate="${variety[i].certifiedSeedingRate}">${variety[i].name} - ${variety[i].zone1}%</option>`;
 				}
 
-			} else if (checkZone() === "zone3/4") {
+			} else if (checkZone() === zone3) {
 				console.log('zone 3 selected');
 				for (var i = 0; i < variety.length; i++) {
 					checkVariety().innerHTML +=
@@ -483,8 +483,8 @@
 				},
 				{
 					name: 'CDC Athabasca',
-					zone1: 102,
-					zone3: 104,
+					zone1: 109,
+					zone3: 113,
 					certifiedSeedingRate: 10
 				}
 			];
@@ -498,10 +498,594 @@
 					zone1: 103,
 					zone3: 105
 				}
-			]
+			];
+
+			var winterWheat = [{
+					name: "CDC Buteo",
+					zone1: 100,
+					zone3: 100,
+					"certified seeding rate": ""
+				},
+				{
+					name: "CDC Chase",
+					zone1: 109,
+					zone3: 110,
+					"certified seeding rate": ""
+				},
+				{
+					name: "AAC Elevate",
+					zone1: 110,
+					zone3: 103,
+					"certified seeding rate": ""
+				},
+				{
+					name: "Emerson",
+					zone1: 105,
+					zone3: 97,
+					"certified seeding rate": ""
+				},
+				{
+					name: "Fourish",
+					zone1: 101,
+					zone3: 101,
+					"certified seeding rate": ""
+				},
+				{
+					name: "AAC Gateway",
+					zone1: 101,
+					zone3: 100,
+					"certified seeding rate": ""
+				},
+				{
+					name: "AAC Goldrush",
+					zone1: 111,
+					zone3: 114,
+					"certified seeding rate": ""
+				},
+				{
+					name: "Moats",
+					zone1: 108,
+					zone3: 103,
+					"certified seeding rate": ""
+				},
+				{
+					name: "Radiant",
+					zone1: 103,
+					zone3: 102,
+					"certified seeding rate": ""
+				},
+				{
+					name: "AAC Wildfire",
+					zone1: 114,
+					zone3: 118,
+					"certified seeding rate": ""
+				},
+				{
+					name: "AAC Icefield",
+					zone1: 113,
+					zone3: 99,
+					"certified seeding rate": ""
+				},
+				{
+					name: "Accipiter",
+					zone1: 110,
+					zone3: 106,
+					"certified seeding rate": ""
+				},
+				{
+					name: "CDC Falcon",
+					zone1: 103,
+					zone3: 98,
+					"certified seeding rate": ""
+				},
+				{
+					name: "Peregrine",
+					zone1: 114,
+					zone3: 110,
+					"certified seeding rate": ""
+				},
+				{
+					name: "Pintail",
+					zone1: 109,
+					zone3: 112,
+					"certified seeding rate": ""
+				},
+				{
+					name: "CDC Ptarmigan",
+					zone1: 113,
+					zone3: 113,
+					"certified seeding rate": ""
+				},
+				{
+					name: "Sunrise",
+					zone1: 114,
+					zone3: 118,
+					"certified seeding rate": ""
+				},
+				{
+					name: "Swainson",
+					zone1: 118,
+					zone3: 115,
+					"certified seeding rate": ""
+				}
+			];
+
+			var fallRye = [{
+					"name": "Hazlet",
+					"zone1/2": 100,
+					"zone3/4": 100,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Prima",
+					"zone1/2": 81,
+					"zone3/4": 94,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "KWS Bono",
+					"zone1/2": 128,
+					"zone3/4": 125,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Brasetto",
+					"zone1/2": 113,
+					"zone3/4": 122,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "KWS Daniello",
+					"zone1/2": 111,
+					"zone3/4": 111,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "KWS Gatano",
+					"zone1/2": 118,
+					"zone3/4": 120,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Guttino",
+					"zone1/2": 116,
+					"zone3/4": 127,
+					"certified seeding rate": ""
+				}
+			];
+
+			var maltingBarley = [{
+					"name": "AC Metcalfe",
+					"zone1/2": 100,
+					"zone3/4": 100,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Bow",
+					"zone1/2": 113,
+					"zone3/4": 111,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "AAC Connect",
+					"zone1/2": 103,
+					"zone3/4": 113,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Copeland",
+					"zone1/2": 107,
+					"zone3/4": 108,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "AAC Synergy",
+					"zone1/2": 118,
+					"zone3/4": 118,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Celebration",
+					"zone1/2": 109,
+					"zone3/4": 107,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Legacy",
+					"zone1/2": 104,
+					"zone3/4": 101,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Tradition",
+					"zone1/2": 112,
+					"zone3/4": 107,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Bentley",
+					"zone1/2": 113,
+					"zone3/4": 112,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Fraser",
+					"zone1/2": 112,
+					"zone3/4": 115,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Kindersley",
+					"zone1/2": 105,
+					"zone3/4": 107,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Lowe",
+					"zone1/2": 109,
+					"zone3/4": 109,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Newdale",
+					"zone1/2": 112,
+					"zone3/4": 113,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Polarstar",
+					"zone1/2": 104,
+					"zone3/4": 99,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC PlatinumStar",
+					"zone1/2": 104,
+					"zone3/4": 104,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Cerveza",
+					"zone1/2": 113,
+					"zone3/4": 117,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Goldstar",
+					"zone1/2": 109,
+					"zone3/4": 113,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Harrington",
+					"zone1/2": 95,
+					"zone3/4": 89,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Landis",
+					"zone1/2": 109,
+					"zone3/4": 109,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Major",
+					"zone1/2": 112,
+					"zone3/4": 115,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Meredith",
+					"zone1/2": 114,
+					"zone3/4": 112,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Merit 57",
+					"zone1/2": 109,
+					"zone3/4": 107,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Sirish",
+					"zone1/2": 99,
+					"zone3/4": 103,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Anderson",
+					"zone1/2": 107,
+					"zone3/4": 108,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Battleford",
+					"zone1/2": 108,
+					"zone3/4": 108,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Lacey",
+					"zone1/2": 101,
+					"zone3/4": 101,
+					"certified seeding rate": ""
+				}
+			];
+
+			var foodBarley = [{
+					"name": "Altorado",
+					"zone1/2": 117,
+					"zone3/4": 111,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Austenson",
+					"zone1/2": 118,
+					"zone3/4": 121,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Brahma",
+					"zone1/2": 114,
+					"zone3/4": 115,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Canmore",
+					"zone1/2": 111,
+					"zone3/4": 114,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Champion",
+					"zone1/2": 117,
+					"zone3/4": 117,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Claymore",
+					"zone1/2": 119,
+					"zone3/4": 117,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Coalition",
+					"zone1/2": 111,
+					"zone3/4": 114,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Cowboy",
+					"zone1/2": 99,
+					"zone3/4": 105,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Dolly",
+					"zone1/2": 103,
+					"zone3/4": 103,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Gadsby",
+					"zone1/2": 110,
+					"zone3/4": 110,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Helgason",
+					"zone1/2": 105,
+					"zone3/4": 106,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Maverick",
+					"zone1/2": 98,
+					"zone3/4": 98,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Oreana",
+					"zone1/2": 117,
+					"zone3/4": 112,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Trey",
+					"zone1/2": 104,
+					"zone3/4": 110,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Amisk",
+					"zone1/2": 113,
+					"zone3/4": 110,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Chigwell",
+					"zone1/2": 107,
+					"zone3/4": 111,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Muskwa",
+					"zone1/2": 112,
+					"zone3/4": 110,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "AC Rosser",
+					"zone1/2": 115,
+					"zone3/4": 115,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Sundre",
+					"zone1/2": 120,
+					"zone3/4": 116,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Ascent",
+					"zone1/2": 99,
+					"zone3/4": 97,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Carter",
+					"zone1/2": 94,
+					"zone3/4": 99,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Clear",
+					"zone1/2": 96,
+					"zone3/4": 103,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC MGwire",
+					"zone1/2": 98,
+					"zone3/4": 99,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Taylor",
+					"zone1/2": 82,
+					"zone3/4": 87,
+					"certified seeding rate": ""
+				}
+			];
+
+			var yellowFieldPea = [{
+					"name": "CDC Amarillo",
+					"zone1/2": 100,
+					"zone3/4": 100,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Abarth",
+					"zone1/2": 93,
+					"zone3/4": 90,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Agassiz",
+					"zone1/2": 98,
+					"zone3/4": 93,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "AAC Ardill",
+					"zone1/2": 102,
+					"zone3/4": 99,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Athabasca",
+					"zone1/2": 93,
+					"zone3/4": 99,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Canary",
+					"zone1/2": 96,
+					"zone3/4": 98,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "AAC Carver",
+					"zone1/2": 103,
+					"zone3/4": 101,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "AAC Chrome",
+					"zone1/2": 105,
+					"zone3/4": 102,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Earlystar",
+					"zone1/2": 92,
+					"zone3/4": 91,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Golden",
+					"zone1/2": 91,
+					"zone3/4": 82,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Hornet",
+					"zone1/2": 91,
+					"zone3/4": 84,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Hyline",
+					"zone1/2": 96,
+					"zone3/4": 96,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Inca",
+					"zone1/2": 104,
+					"zone3/4": 100,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "AAC Lacombe",
+					"zone1/2": 98,
+					"zone3/4": 99,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Meadow",
+					"zone1/2": 91,
+					"zone3/4": 89,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Prosper",
+					"zone1/2": 84,
+					"zone3/4": 79,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Saffron",
+					"zone1/2": 98,
+					"zone3/4": 91,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Spectrum",
+					"zone1/2": 104,
+					"zone3/4": 102,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "Thunderbird",
+					"zone1/2": 89,
+					"zone3/4": 83,
+					"certified seeding rate": ""
+				},
+				{
+					"name": "CDC Treasure",
+					"zone1/2": 88,
+					"zone3/4": 87,
+					"certified seeding rate": ""
+				}
+			];
+
+
 			return {
 				peas: peas,
-				wheat: wheat
+				winterWheat: winterWheat,
+				fallRye: fallRye,
+
 			};
 		})();
 
@@ -535,10 +1119,14 @@
 
 			if (event.target.matches('#variety') || event.target.matches('#newVariety')) {
 				getSelectedVarietyValues();
+				calculateYieldGain();
+				calculateCertifiedBenefit();
 			}
 			if (event.target.matches('#zone') || event.target.matches('#cropType')) {
 				console.log(event.target);
 				updateVarietyOptions();
+				calculateYieldGain();
+				calculateCertifiedBenefit();
 			}
 		});
 	</script>
