@@ -6,9 +6,8 @@
 		Difference = Total Certified Seed - Total Bin Run
 		Yield Gain = (Certified Seed Variety - Bin Run Variety + Economic Gain of Certified Seed) * Your Average Yield
 		$/ac Benefit of Certified Seed Use = (Yield Gain * Today's Commidity Price) - Difference Per Acre
-		*/
-
-
+        */
+              
 var calculateTotalBinRun = function () {
     //Total Bin Run = seedingRate * (commodityPrice + cleaningCost + freightCost + testingCost + screeningCost)
     var inputs = getBinRunInputValues();
@@ -238,8 +237,8 @@ var updateVarietyOptions = function () {
         return getVariety(cropData.canadaWesternSpecialPurposeWheat);
     } else if (checkCrop() === 'hardWhiteSpringWheat') {
         return getVariety(cropData.hardWhiteSpringWheat);
-    } else if (checkCrop() === 'canadaWesternDurum') {
-        return getVariety(cropData.canadaWesternDurum);
+    } else if (checkCrop() === 'canadaWesternAmberDurum') {
+        return getVariety(cropData.canadaWesternAmberDurum);
     }
 };
 
