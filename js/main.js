@@ -1,4 +1,11 @@
-/*
+        /* NEW CALCULATIONS JANUARY 3rd 2019
+
+        1. Total cost per acre (bin run) = (Seeding Rate x Commodity Price) + Cleaning + Freight + Testing + Screening 
+        2. Total cost per acre (certified seed) = New Seed Cost x Seeding Rate
+        3. $ Benefit of Certified Seed = (total cost bin run - total cost certified seed) + (((current variety - new variety) + genetic gain) x average yield) x commodity price)
+        */
+        
+        /*
 		// CALCULATIONS & FORMULA
 
 		Total Bin Run = seedingRate * (commodityPrice + cleaningCost + freightCost + testingCost + screeningCost)
@@ -8,29 +15,6 @@
 		$/ac Benefit of Certified Seed Use = (Yield Gain * Today's Commidity Price) - Difference Per Acre
         */
               
-var calculateTotalBinRun = function () {
-    //Total Bin Run = seedingRate * (commodityPrice + cleaningCost + freightCost + testingCost + screeningCost)
-    var inputs = getBinRunInputValues();
-    var totalBinRun = inputs.seedingRate * (inputs.commodityPrice + inputs.cleaningCost + inputs.freightCost + inputs.testingCost +
-        inputs.screeningCost);
-    inputs.totalBinRun.value = totalBinRun;
-    console.log(totalBinRun);
-    return totalBinRun;
-};
-
-var calculateTotalCertifiedSeed = function () {
-    //Total Certified Seed = certifiedSeedPrice * seedingRate
-    var inputs = getCertifiedSeedInputValues();
-    var totalCertifiedSeed = inputs.certifiedSeedPrice * inputs.certifiedSeedingRate;
-    inputs.totalCertifiedSeed.value = totalCertifiedSeed;
-    return totalCertifiedSeed;
-};
-
-//Helper function to create shorthand for document.querySelector
-var qs = function (qs) {
-    return document.querySelector(qs);
-};
-
 //Get the inputs from the bin run form and returns an object
 var getBinRunInputs = function () {
     var inputs = {
@@ -51,12 +35,21 @@ var getBinRunInputValues = function () {
         commodityPrice: getBinRunInputs().commodityPrice.valueAsNumber,
         seedingRate: getBinRunInputs().seedingRate.valueAsNumber,
         cleaningCost: getBinRunInputs().cleaningCost.valueAsNumber,
-        freightCost: getBinRunInputs().cleaningCost.valueAsNumber,
+        freightCost: getBinRunInputs().freightCost.valueAsNumber,
         testingCost: getBinRunInputs().testingCost.valueAsNumber,
         screeningCost: getBinRunInputs().screeningCost.valueAsNumber,
         totalBinRun: getBinRunInputs().totalBinRun
     };
     return inputValues;
+};
+var calculateTotalCostBinRun = function () {
+    //Total Bin Run = seedingRate * (commodityPrice + cleaningCost + freightCost + testingCost + screeningCost)
+    var inputs = getBinRunInputValues();
+    var totalBinRun = (inputs.seedingRate * inputs.commodityPrice) + inputs.cleaningCost + inputs.freightCost + inputs.testingCost +
+        inputs.screeningCost;
+    inputs.totalBinRun.value = totalBinRun;
+    console.log(totalBinRun);
+    return totalBinRun;
 };
 
 //Get the inputs from the certified seed form and returns an object
@@ -64,10 +57,6 @@ var getCertifiedSeedInputs = function () {
     var inputs = {
         certifiedSeedPrice: qs('#certifiedSeedPrice'),
         certifiedSeedingRate: qs('#certifiedSeedingRate'),
-        certifiedCleaning: qs('#certifiedCleaning'),
-        certifiedFreight: qs('#certifiedFreight'),
-        certifiedTesting: qs('#certifiedTesting'),
-        certifiedScreening: qs('#certifiedScreening'),
         totalCertifiedSeed: qs('#totalCertifiedSeed')
     };
     return inputs;
@@ -79,14 +68,23 @@ var getCertifiedSeedInputValues = function () {
     var values = {
         certifiedSeedPrice: inputs.certifiedSeedPrice.valueAsNumber,
         certifiedSeedingRate: inputs.certifiedSeedingRate.valueAsNumber,
-        certifiedCleaning: inputs.certifiedCleaning.valueAsNumber,
-        certifiedFreight: inputs.certifiedFreight.valueAsNumber,
-        certifiedTesting: inputs.certifiedTesting.valueAsNumber,
-        certifiedScreening: inputs.certifiedScreening.valueAsNumber,
         totalCertifiedSeed: inputs.totalCertifiedSeed
     };
     return values;
 };
+var calculateTotalCostCertifiedSeed = function () {
+    //Total Certified Seed = certifiedSeedPrice * seedingRate
+    var inputs = getCertifiedSeedInputValues();
+    var totalCertifiedSeed = inputs.certifiedSeedPrice * inputs.certifiedSeedingRate;
+    inputs.totalCertifiedSeed.value = totalCertifiedSeed;
+    return totalCertifiedSeed;
+};
+
+//Helper function to create shorthand for document.querySelector
+var qs = function (qs) {
+    return document.querySelector(qs);
+};
+
 
 //Get the inputs from the seeding rate form and returns an object
 var getSeedingRateInputs = function () {
@@ -112,10 +110,7 @@ var getSeedingRateInputValues = function () {
 
 var getSeedUseInputs = function () {
     var inputs = {
-        difference: qs('#difference'),
         averageYield: qs('#averageYield'),
-        currentVariety: qs('#currentVariety'),
-        newVariety: qs('#newVarietyInput'),
         economicGain: qs('#economicGain'),
         yieldGain: qs('#yieldGain'),
         certifiedBenefit: qs('#certifiedBenefit')
@@ -126,8 +121,8 @@ var getSeedUseInputValues = function () {
     var inputValues = {
         difference: getSeedUseInputs().difference,
         averageYield: getSeedUseInputs().averageYield.valueAsNumber,
-        currentVariety: getSeedUseInputs().currentVariety.valueAsNumber,
-        newVariety: getSeedUseInputs().newVariety.valueAsNumber,
+        //currentVariety: getSeedUseInputs().currentVariety.valueAsNumber,
+        //newVariety: getSeedUseInputs().newVariety.valueAsNumber,
         economicGain: getSeedUseInputs().economicGain.valueAsNumber,
         yieldGain: getSeedUseInputs().yieldGain,
         certifiedBenefit: getSeedUseInputs().certifiedBenefit
@@ -135,25 +130,6 @@ var getSeedUseInputValues = function () {
     return inputValues;
 };
 
-var calculateDifference = function () {
-    //Difference = Total Certified Seed - Total Bin Run
-    var inputs = getSeedUseInputs();
-    inputs.difference.value = calculateTotalCertifiedSeed() - calculateTotalBinRun();
-    return inputs.difference.value;
-};
-
-var calculateYieldGain = function () {
-    var inputs = getSeedUseInputValues();
-    var yieldGain = ((inputs.newVariety / 100) - (inputs.currentVariety / 100) + inputs.economicGain) *
-        inputs.averageYield;
-    console.log(yieldGain);
-    inputs.yieldGain.value = yieldGain.toFixed(2);
-    return yieldGain;
-};
-
-var calculateGrossGain = function () {
-    return calculateYieldGain() * getBinRunInputValues().commodityPrice;
-};
 
 var calculateCertifiedBenefit = function () {
     // $/ac Benefit of Certified Seed Use = (Yield Gain * Today's Commidity Price) - Difference Per Acre
@@ -242,13 +218,13 @@ var updateVarietyOptions = function () {
     }
 };
 
-var getSelectedVarietyValues = function () {
+/* var getSelectedVarietyValues = function () {
     var currentVariety = getSeedUseInputs().currentVariety;
     var newVariety = getSeedUseInputs().newVariety;
     currentVariety.value = checkVariety().selectedOptions[0].value;
     newVariety.value = checkNewVariety().selectedOptions[0].value;
     console.log(newVariety.value);
-};
+}; */
 
 //Iterate over cropData and add options to variety dropdown menu
 var getVariety = function (variety) {
@@ -2210,14 +2186,14 @@ var calculateOptimalSeedingRate = function () {
 //Event listener on document listening for any changes to inputs and dropdowns
 document.addEventListener('change', function (event) {
     calculateOptimalSeedingRate();
-    calculateTotalBinRun();
-    calculateTotalCertifiedSeed();
+    calculateTotalCostBinRun();
+    calculateTotalCostCertifiedSeed();
     calculateDifference();
     calculateYieldGain();
     calculateCertifiedBenefit();
 
     if (event.target.matches('#variety') || event.target.matches('#newVariety')) {
-        getSelectedVarietyValues();
+        //getSelectedVarietyValues();
         calculateYieldGain();
         calculateCertifiedBenefit();
     }
@@ -2228,3 +2204,8 @@ document.addEventListener('change', function (event) {
         calculateCertifiedBenefit();
     }
 });
+
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

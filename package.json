@@ -1,0 +1,22 @@
+{
+  "name": "condie-seed-calculator",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryandejaegher/Condie-Seed-Calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryandejaegher/Condie-Seed-Calculator/issues"
+  },
+  "homepage": "https://github.com/ryandejaegher/Condie-Seed-Calculator#readme",
+  "description": "",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}

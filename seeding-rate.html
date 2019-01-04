@@ -5,216 +5,215 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/main.css">
 	<title>Document</title>
 
-	<style>
-		body {
-        font-family: sans-serif;
-		width: 100%;
-		font-weight: bold;
-    }
 
-    form {
-        display: flex;
-        flex-flow: column;
-        justify-content: flex-start;
-        background-color: #fafafa;
-        padding: 20px;
-        margin-top: 20px;
-		border-radius: 4px;
-		box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
-    }
-
-	. {
-		border: 4px solid lightblue;
-	}
-	. {
-		border: 4px solid green;
-	}
-
-	form:nth-child(2) {
-		flex: 0 45%;
-		border-top: 16px solid blue;
-	}
-	
-	form:nth-child(3) {
-		flex: 0 45%;
-		border-top: 16px solid gold;
-	}
-	form:nth-child(4), form:nth-child(5) {
-		flex: 0 100%;
-		border-top: 16px solid chartreuse;
-	}
-
-    .wrapper {
-		margin: 0 auto;
-		max-width: 1200px;
-    }
-
-	.container {
-		display: flex;
-        flex-flow: row wrap;
-		justify-content: space-between;
-	}
-
-	.debug {
-		outline: 1px solid red;
-	}
-	#dropdown {
-		flex: 0 100%;
-		text-align: center;
-		display: flex;
-		justify-content: space-around;
-	}
-	select { 
-		width: 200px;
-		padding: 200px;
-	}
-
-    input {
-        padding: 15px;
-        font-size: 16px;
-        border: 1px solid #bbb;
-        border-radius: 5px;
-    }
-    label {
-        margin: 24px 0px 8px 0px;
-    }
-
-
-    </style>
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="container">
-			<div id="dropdown">
-				<select name="" id="zone">
-					<option value="" disabled selected>Choose Your Zone</option>
-					<option value=zone1>Zone 1/2</option>
-					<option value=zone3>Zone 3/4</option>
-				</select>
-				<select name="" id="cropType">
-					<option value="" disabled selected>Choose Your Crop</option>
-					<option value="peas">Peas</option>
-					<option value="winterWheat">Winter Wheat</option>
-					<option value="fallRye">Fall Rye</option>
-					<option value="maltingBarley">Malting Barley</option>
-					<option value="foodBarley">Food Barley</option>
-					<option value="yellowFieldPea">Yellow Field Pea</option>
-					<option value="greenFieldPea">Green Field Pea</option>
-					<option value="flax">Flax</option>
-					<option value="oats">Oats</option>
-					<option value="redLentil">Red Lentil</option>
-					<option value="greenLentil">Green Lentil</option>
-					<option value="canary">Canary</option>
-					<option value="cwrs">CWRS</option>
-					<option value="cps">CPS</option>
-					<option value="cnhr">CNHR</option>
-					<option value="softWhiteSpringWheat">Soft White Spring Wheat</option>
-					<option value="canadaWesternSpecialPurposeWheat">Canada Western Special Purpose Wheat</option>
-					<option value="hardWhiteSpringWheat">Hard White Spring Wheat</option>
-					<option value="canadaWesternAmberDurum">Canada Western Amber Durum</option>
-				</select>
-				<select name="" id="variety">
-					<option value="" disabled selected>Choose Your Current Variety</option>
-				</select>
-				<select name="" id="newVariety">
-					<option value="" disabled selected>Choose Your New Variety</option>
-				</select>
-			</div>
 			<form>
-				<h1>Bin Run Seed</h1>
+				<fieldset class="assumption">
+					<legend class="row">Step 1 - Assumption</legend>
+					<div class="row">
+						<div class="column">
+							<select name="" id="zone">
+								<option value="" disabled selected>Choose Your Zone</option>
+								<option value=zone1>Zone 1/2</option>
+								<option value=zone3>Zone 3/4</option>
+							</select>
+						</div>
+						<div class="column">
+							<select name="" id="cropType">
+								<option value="" disabled selected>Choose Your Crop</option>
+								<option value="peas">Peas</option>
+								<option value="winterWheat">Winter Wheat</option>
+								<option value="fallRye">Fall Rye</option>
+								<option value="maltingBarley">Malting Barley</option>
+								<option value="foodBarley">Food Barley</option>
+								<option value="yellowFieldPea">Yellow Field Pea</option>
+								<option value="greenFieldPea">Green Field Pea</option>
+								<option value="flax">Flax</option>
+								<option value="oats">Oats</option>
+								<option value="redLentil">Red Lentil</option>
+								<option value="greenLentil">Green Lentil</option>
+								<option value="canary">Canary</option>
+								<option value="cwrs">CWRS</option>
+								<option value="cps">CPS</option>
+								<option value="cnhr">CNHR</option>
+								<option value="softWhiteSpringWheat">Soft White Spring Wheat</option>
+								<option value="canadaWesternSpecialPurposeWheat">Canada Western Special Purpose Wheat</option>
+								<option value="hardWhiteSpringWheat">Hard White Spring Wheat</option>
+								<option value="canadaWesternAmberDurum">Canada Western Amber Durum</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column">
+							<select name="" id="variety">
+								<option value="" disabled selected>Choose Your Current Variety</option>
+							</select>
+						</div>
+						<div class="column">
+							<select name="" id="newVariety">
+								<option value="" disabled selected>Choose Your New Variety</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column">
+							<label for="">Today's Commodity Price</label><span>I'm a hint</span>
+							<input type="number" name="" placeholder="0" id="commodityPrice" class="">
+						</div>
+						<div class="column">
+							<label for="">Your Average Yield</label>
+							<input type="number" name="" placeholder="0" id="averageYield">
+						</div>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend class="row">Step 2 - Bin Run Seed</legend>
+					<div class="row">
+						<div class="column">
 
-				<label for="">Today's Commodity Price</label>
-				<input type="number" name="" placeholder="0" id="commodityPrice" class="">
+							<label for="">Seeding Rate</label>
+							<input type="number" name="" placeholder="0" id="seedingRate" class="">
+						</div>
+						<div class="column">
+							<label for="">Cleaning</label>
+							<input type="number" name="" placeholder="0" id="cleaningCost" class="" value="1" readonly>
+						</div>
+						<div class="column">
 
-				<label for="">Seeding Rate</label>
-				<input type="number" name="" placeholder="0" id="seedingRate" class="">
+							<label for="">Freight</label>
+							<input type="number" name="" placeholder="0" id="freightCost" class="" value="0.75" readonly>
 
-				<label for="">Cleaning</label>
-				<input type="number" name="" placeholder="0" id="cleaningCost" class="">
+						</div>
+						<div class="column">
 
-				<label for="">Freight</label>
-				<input type="number" name="" placeholder="0" id="freightCost" class="">
+							<label for="">Testing</label>
+							<input type="number" name="" placeholder="0" id="testingCost" class="" value="0.10" readonly>
 
-				<label for="">Testing</label>
-				<input type="number" name="" placeholder="0" id="testingCost" class="">
+						</div>
+						<div class="column">
 
-				<label for="">Screening Loss</label>
-				<input type="number" name="" placeholder="0" id="screeningCost" class="">
+							<label for="">Screening Loss</label>
+							<input type="number" name="" placeholder="0" id="screeningCost" class="" value="0.15" readonly>
 
-				<label for="">Total Cost Per Acre (Bin Run)</label>
-				<input type="number" name="" placeholder="0" id="totalBinRun" class="">
+						</div>
+
+						<div class="full-column">
+
+							<label for="">Total Cost Per Acre (Bin Run)</label>
+							<input type="number" name="" placeholder="0" id="totalBinRun" class="">
+
+						</div>
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+							Launch demo modal
+						</button>
+					</div>
+				</fieldset>
+				<hr>
+				<fieldset>
+					<legend class="row">Step 3 - Certified Seed</legend>
+					<div class="row">
+						<div class="column">
+							<label>New Seed Cost</label>
+							<input type="number" name="" placeholder="0" id="certifiedSeedPrice" class="">
+						</div>
+						<div class="column">
+							<label>Seeding Rate</label>
+							<input type="number" name="" placeholder="0" id="certifiedSeedingRate" class="">
+						</div>
+						<div class="column">
+							<label for="">Genetic Gain of Certified Seed</label>
+							<input type="number" name="" placeholder="0" id="economicGain">
+						</div>
+						<div class="full-column">
+							<label for="">Total Cost Per Acre (Certified Seed)</label>
+							<input type="number" name="" placeholder="0" id="totalCertifiedSeed" class="" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+						</div>
+					</div>
+				</fieldset>
+				<hr>
+				<fieldset>
+					<legend class="row">Step 4 - Results</legend>
+					<!--
+					<label for="">Difference</label>
+					<input type="number" name="" placeholder="0" id="difference" class="">
+
+					<label for="">Current Variety</label>
+					<input type="number" name="" placeholder="0" id="currentVariety">
+
+					<label for="">New Variety</label>
+					<input type="number" name="" placeholder="0" id="newVarietyInput">
+
+					<label for="">Yield Gain</label>
+					<input type="number" name="" placeholder="0" id="yieldGain" class="">
+					-->
+					<div class="row">
+						<div class="full-column" <label for="">$ Benefit of Certified Seed Use</label>
+							<input type="number" name="" placeholder="0" id="certifiedBenefit" readonly>
+						</div>
+					</div>
+				</fieldset>
 			</form>
-
 			<form>
-				<h1>Certified Seed</h1>
-				<label>New Seed Cost</label>
-				<input type="number" name="" placeholder="0" id="certifiedSeedPrice" class="">
+				<fieldset>
+					<div class="row">
+						<legend>Seeding Rate</legend>
+					</div>
+					<div class="row">
+						<div class="full-column">
 
-				<label>Seeding Rate</label>
-				<input type="number" name="" placeholder="0" id="certifiedSeedingRate" class="">
+							<label>Plant Density (plants / sq ft.)</label>
+							<input type="number" name="density" id="density" placeholder="0" value="">
 
-				<label>Cleaning</label>
-				<input type="number" name="" id="certifiedCleaning" placeholder="included" disabled>
+							<label>1,000 Kernel Weight (g)</label>
+							<input type="number" name="weight" id="weight" placeholder="0" value="">
 
-				<label>Freight</label>
-				<input type="number" name="" id="certifiedFreight" placeholder="included" disabled>
+							<label>Germination Rate(%)</label>
+							<input type="number" name="germination" id="germination" placeholder="0" value="">
 
-				<label>Testing</label>
-				<input type="number" name="" id="certifiedTesting" placeholder="included" disabled>
-
-				<label>Screening Loss</label>
-				<input type="number" name="" id="certifiedScreening" placeholder="included" disabled>
-
-				<label for="">Total Cost Per Acre (Certified Seed)</label>
-				<input type="number" name="" placeholder="0" id="totalCertifiedSeed" class="">
-			</form>
-			<form>
-				<h2>Certified Seed Use Calculations</h2>
-
-				<label for="">Difference</label>
-				<input type="number" name="" placeholder="0" id="difference" class="">
-
-				<label for="">Your Average Yield</label>
-				<input type="number" name="" placeholder="0" id="averageYield">
-
-				<label for="">Current Variety</label>
-				<input type="number" name="" placeholder="0" id="currentVariety">
-
-				<label for="">New Variety</label>
-				<input type="number" name="" placeholder="0" id="newVarietyInput">
-
-				<label for="">Economic Gain of Certified Seed</label>
-				<input type="number" name="" placeholder="0" id="economicGain">
-
-				<label for="">Yield Gain</label>
-				<input type="number" name="" placeholder="0" id="yieldGain" class="">
-
-				<label for="">$ Benefit of Certified Seed Use</label>
-				<input type="number" name="" placeholder="0" id="certifiedBenefit">
-			</form>
-			<form>
-				<h1>Seeding Rate</h1>
-
-				<label>Plant Density (plants / sq ft.)</label>
-				<input type="number" name="density" id="density" placeholder="0" value="">
-
-				<label>1,000 Kernel Weight (g)</label>
-				<input type="number" name="weight" id="weight" placeholder="0" value="">
-
-				<label>Germination Rate(%)</label>
-				<input type="number" name="germination" id="germination" placeholder="0" value="">
-
-				<label>Emergence Mortality(%)</label>
-				<input type="number" name="mortality" id="mortality" placeholder="0" value="">
-				<h2>Optimal Seeding Rate (lbs/ac)</h2>
-				<h3 id="seedingRateResult">0.0</h3>
+							<label>Emergence Mortality(%)</label>
+							<input type="number" name="mortality" id="mortality" placeholder="0" value="">
+							<h2>Optimal Seeding Rate (lbs/ac)</h2>
+							<h3 id="seedingRateResult">0.0</h3>
+						</div>
+					</div>
+				</fieldset>
 			</form>
 		</div>
 	</div>
 
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	 aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!--
 	/*
 	TODO:
@@ -228,6 +227,14 @@
 	Change total input fields to an inline h2 tag
 	Add placeholders to inputs
 	Add inline link to go to "Seeding Rate Calculator"
+	
+	--Set Defaults for Cleaning, Freight, Screening, Testing
+	Screening Loss = 0.15
+	Cleaning = 1.00
+	Testing = 0.10
+	Freight = 0.75
+	--These numbers need to be multiplied 
+
 
 
 	DONE:
@@ -237,7 +244,14 @@
 	*/
 
 -->
-<script src="js/main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	 crossorigin="anonymous"></script>
+	<script src="js/main.js"></script>
+
 </body>
 
 </html>
