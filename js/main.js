@@ -108,38 +108,49 @@ var getSeedingRateInputValues = function () {
     return inputValues;
 };
 
-var getSeedUseInputs = function () {
+var getResultInputs = function () {
     var inputs = {
         averageYield: qs('#averageYield'),
         economicGain: qs('#economicGain'),
-        yieldGain: qs('#yieldGain'),
         certifiedBenefit: qs('#certifiedBenefit')
     };
     return inputs;
 };
-var getSeedUseInputValues = function () {
+var getResultInputValues = function () {
     var inputValues = {
-        difference: getSeedUseInputs().difference,
-        averageYield: getSeedUseInputs().averageYield.valueAsNumber,
-        //currentVariety: getSeedUseInputs().currentVariety.valueAsNumber,
-        //newVariety: getSeedUseInputs().newVariety.valueAsNumber,
-        economicGain: getSeedUseInputs().economicGain.valueAsNumber,
-        yieldGain: getSeedUseInputs().yieldGain,
-        certifiedBenefit: getSeedUseInputs().certifiedBenefit
+        averageYield: getResultInputs().averageYield.valueAsNumber,
+        economicGain: getResultInputs().economicGain.valueAsNumber,
+        certifiedBenefit: getResultInputs().certifiedBenefit
     };
     return inputValues;
 };
 
+var calculateBenefitOfCertifiedSeed = function() {
+    var inputs = getResultInputValues();
+    if (checkVariety().value === '' && checkNewVariety().value === '') {
+        inputs.certifiedBenefit.value = 0;
+        return;
+    } else {
+    var varietyDifference = (checkVariety().value/100 - checkNewVariety().value/100) + (inputs.economicGain/100);
+    var result = (calculateTotalCostBinRun() - calculateTotalCostCertifiedSeed()) + ((varietyDifference * inputs.averageYield) * getBinRunInputValues().commodityPrice);
+    inputs.certifiedBenefit.value = result.toFixed(2);
+    }
+}
 
-var calculateCertifiedBenefit = function () {
-    // $/ac Benefit of Certified Seed Use = (Yield Gain * Today's Commidity Price) - Difference Per Acre
-    var inputs = getSeedUseInputValues();
-    inputs.certifiedBenefit.value = ((calculateYieldGain() * getBinRunInputValues().commodityPrice) -
-        calculateDifference()).toFixed(2);
-    return (calculateYieldGain() * getBinRunInputValues().commodityPrice) - calculateDifference();
-};
-
-
+var setBinRunSeedingRate = function() {
+    var seedingRate = calculateOptimalSeedingRate();
+    getBinRunInputs().seedingRate.value = seedingRate;
+    calculateTotalCostBinRun();
+    $('#bin-run-seeding-rate').modal('hide')
+    console.log('success');
+}
+var setCertifiedSeedingRate = function() {
+    var seedingRate = calculateOptimalSeedingRate();
+    getCertifiedSeedInputs().certifiedSeedingRate.value = seedingRate;
+    calculateTotalCostCertifiedSeed();
+    $('#bin-run-seeding-rate').modal('hide')
+    console.log('success');
+}
 
 /******
 		
@@ -219,8 +230,8 @@ var updateVarietyOptions = function () {
 };
 
 /* var getSelectedVarietyValues = function () {
-    var currentVariety = getSeedUseInputs().currentVariety;
-    var newVariety = getSeedUseInputs().newVariety;
+    var currentVariety = getResultInputs().currentVariety;
+    var newVariety = getResultInputs().newVariety;
     currentVariety.value = checkVariety().selectedOptions[0].value;
     newVariety.value = checkNewVariety().selectedOptions[0].value;
     console.log(newVariety.value);
@@ -2188,20 +2199,26 @@ document.addEventListener('change', function (event) {
     calculateOptimalSeedingRate();
     calculateTotalCostBinRun();
     calculateTotalCostCertifiedSeed();
-    calculateDifference();
-    calculateYieldGain();
-    calculateCertifiedBenefit();
+    calculateBenefitOfCertifiedSeed();
 
     if (event.target.matches('#variety') || event.target.matches('#newVariety')) {
         //getSelectedVarietyValues();
-        calculateYieldGain();
-        calculateCertifiedBenefit();
+        //calculateYieldGain();
+        calculateBenefitOfCertifiedSeed();
     }
     if (event.target.matches('#zone') || event.target.matches('#cropType')) {
         console.log(event.target);
         updateVarietyOptions();
-        calculateYieldGain();
-        calculateCertifiedBenefit();
+        calculateBenefitOfCertifiedSeed();
+    }
+});
+
+document.addEventListener('click', function(event) {
+    if(event.target.matches('#save-bin-run')) {
+        setBinRunSeedingRate();
+    }
+    if(event.target.matches('#save-certified-seed')) {
+        setCertifiedSeedingRate();
     }
 });
 

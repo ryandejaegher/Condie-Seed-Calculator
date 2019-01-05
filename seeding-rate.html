@@ -15,20 +15,22 @@
 
 <body>
 	<div class="wrapper">
-		<div class="container">
+		<div class="container-fluid">
 			<form>
 				<fieldset class="assumption">
-					<legend class="row">Step 1 - Assumption</legend>
 					<div class="row">
-						<div class="column">
-							<select name="" id="zone">
+						<legend class="col">Step 1 - Assumption</legend>
+					</div>
+					<div class="row">
+						<div class="col">
+							<select name="" id="zone" class="custom-select custom-select-sm">
 								<option value="" disabled selected>Choose Your Zone</option>
 								<option value=zone1>Zone 1/2</option>
 								<option value=zone3>Zone 3/4</option>
 							</select>
 						</div>
-						<div class="column">
-							<select name="" id="cropType">
+						<div class="col">
+							<select name="" id="cropType" class="custom-select custom-select-sm">
 								<option value="" disabled selected>Choose Your Crop</option>
 								<option value="peas">Peas</option>
 								<option value="winterWheat">Winter Wheat</option>
@@ -53,137 +55,116 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="column">
-							<select name="" id="variety">
+						<div class="col">
+							<select name="" id="variety" class="custom-select custom-select-sm">
 								<option value="" disabled selected>Choose Your Current Variety</option>
 							</select>
 						</div>
-						<div class="column">
-							<select name="" id="newVariety">
+						<div class="col">
+							<select name="" id="newVariety" class="custom-select custom-select-sm">
 								<option value="" disabled selected>Choose Your New Variety</option>
 							</select>
 						</div>
 					</div>
 					<div class="row">
-						<div class="column">
+						<div class="col">
 							<label for="">Today's Commodity Price</label><span>I'm a hint</span>
-							<input type="number" name="" placeholder="0" id="commodityPrice" class="">
+							<input type="number" name="" placeholder="0" id="commodityPrice" class="form-control form-control-lg">
 						</div>
-						<div class="column">
+						<div class="col">
 							<label for="">Your Average Yield</label>
-							<input type="number" name="" placeholder="0" id="averageYield">
+							<input type="number" name="" placeholder="0" id="averageYield" class="form-control form-control-lg">
 						</div>
 					</div>
 				</fieldset>
 				<fieldset>
-					<legend class="row">Step 2 - Bin Run Seed</legend>
 					<div class="row">
-						<div class="column">
-
+						<legend class="col">Step 2 - Bin Run Seed</legend>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<p>I'm a description of what needs to be in this step</p>
+						</div>
+						<div class="form-group col-4">
 							<label for="">Seeding Rate</label>
-							<input type="number" name="" placeholder="0" id="seedingRate" class="">
-						</div>
-						<div class="column">
-							<label for="">Cleaning</label>
-							<input type="number" name="" placeholder="0" id="cleaningCost" class="" value="1" readonly>
-						</div>
-						<div class="column">
-
+							<input type="number" name="" placeholder="0" id="seedingRate" class="form-control form-control-lg">
 							<label for="">Freight</label>
-							<input type="number" name="" placeholder="0" id="freightCost" class="" value="0.75" readonly>
-
+							<input type="number" name="" placeholder="0" id="freightCost" class="form-control form-control-lg" value="0.75"
+							 readonly>
 						</div>
-						<div class="column">
-
+						<div class="form-group col-4">
+							<label for="">Cleaning</label>
+							<input type="number" name="" placeholder="0" id="cleaningCost" class="form-control form-control-lg" value="1"
+							 readonly>
 							<label for="">Testing</label>
-							<input type="number" name="" placeholder="0" id="testingCost" class="" value="0.10" readonly>
-
+							<input type="number" name="" placeholder="0" id="testingCost" class="form-control form-control-lg" value="0.10"
+							 readonly>
 						</div>
-						<div class="column">
-
-							<label for="">Screening Loss</label>
-							<input type="number" name="" placeholder="0" id="screeningCost" class="" value="0.15" readonly>
-
-						</div>
-
-						<div class="full-column">
-
-							<label for="">Total Cost Per Acre (Bin Run)</label>
-							<input type="number" name="" placeholder="0" id="totalBinRun" class="">
-
-						</div>
-						<!-- Button trigger modal -->
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-							Launch demo modal
-						</button>
 					</div>
+						<div class="row justify-content-end">
+							<div class="form-group col-8">
+									<label for="">Screening Loss</label>
+									<input type="number" name="" placeholder="0" id="screeningCost" class="form-control form-control-lg" value="0.15"
+									 readonly>
+									 <label for="">Total Cost Per Acre (Bin Run)</label>
+							<input type="number" name="" placeholder="0" id="totalBinRun" class="form-control form-control-lg">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bin-run-seeding-rate">
+									Use Seeding Rate Calculator
+								</button>
+								</div>
+						</div>
+					<div class="row">
+						<div class="form-group col-8">
+						</div>
+					</div>
+					<!-- Button trigger modal -->
+
 				</fieldset>
 				<hr>
 				<fieldset>
-					<legend class="row">Step 3 - Certified Seed</legend>
 					<div class="row">
-						<div class="column">
+						<legend class="col">Step 3 - Certified Seed</legend>
+					</div>
+					<div class="row align-items-start">
+						<div class="col-4">
+							<p>I'm a description of what needs to be in this step</p>
+						</div>
+						<div class="form-group col-4">
 							<label>New Seed Cost</label>
-							<input type="number" name="" placeholder="0" id="certifiedSeedPrice" class="">
+							<input type="number" name="" placeholder="0" id="certifiedSeedPrice" class="form-control form-control-lg">
 						</div>
-						<div class="column">
+						<div class="form-group col-4">
 							<label>Seeding Rate</label>
-							<input type="number" name="" placeholder="0" id="certifiedSeedingRate" class="">
-						</div>
-						<div class="column">
-							<label for="">Genetic Gain of Certified Seed</label>
-							<input type="number" name="" placeholder="0" id="economicGain">
-						</div>
-						<div class="full-column">
-							<label for="">Total Cost Per Acre (Certified Seed)</label>
-							<input type="number" name="" placeholder="0" id="totalCertifiedSeed" class="" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+							<input type="number" name="" placeholder="0" id="certifiedSeedingRate" class="form-control form-control-lg">
 						</div>
 					</div>
+					<div class="row justify-content-end">
+						<div class="form-group col-8">
+							<label for="">Genetic Gain of Certified Seed</label>
+							<input type="number" name="" placeholder="0" id="economicGain" class="form-control form-control-lg">
+						</div>
+					</div>
+					<div class="row justify-content-end">
+						<div class="form-group col-8">
+							<label for="">Total Cost Per Acre (Certified Seed)</label>
+							<input type="number" name="" placeholder="0" id="totalCertifiedSeed" class="form-control form-control-lg"
+							 data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bin-run-seeding-rate">
+								Use Seeding Rate Calculator
+							</button>
+						</div>
+					</div>
+					<!-- Button trigger modal -->
 				</fieldset>
 				<hr>
 				<fieldset>
-					<legend class="row">Step 4 - Results</legend>
-					<!--
-					<label for="">Difference</label>
-					<input type="number" name="" placeholder="0" id="difference" class="">
-
-					<label for="">Current Variety</label>
-					<input type="number" name="" placeholder="0" id="currentVariety">
-
-					<label for="">New Variety</label>
-					<input type="number" name="" placeholder="0" id="newVarietyInput">
-
-					<label for="">Yield Gain</label>
-					<input type="number" name="" placeholder="0" id="yieldGain" class="">
-					-->
 					<div class="row">
-						<div class="full-column" <label for="">$ Benefit of Certified Seed Use</label>
-							<input type="number" name="" placeholder="0" id="certifiedBenefit" readonly>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-			<form>
-				<fieldset>
-					<div class="row">
-						<legend>Seeding Rate</legend>
+						<legend class="col">Step 4 - Results</legend>
 					</div>
 					<div class="row">
-						<div class="full-column">
-
-							<label>Plant Density (plants / sq ft.)</label>
-							<input type="number" name="density" id="density" placeholder="0" value="">
-
-							<label>1,000 Kernel Weight (g)</label>
-							<input type="number" name="weight" id="weight" placeholder="0" value="">
-
-							<label>Germination Rate(%)</label>
-							<input type="number" name="germination" id="germination" placeholder="0" value="">
-
-							<label>Emergence Mortality(%)</label>
-							<input type="number" name="mortality" id="mortality" placeholder="0" value="">
-							<h2>Optimal Seeding Rate (lbs/ac)</h2>
-							<h3 id="seedingRateResult">0.0</h3>
+						<div class="form-group col">
+							<label for="">$ Benefit of Certified Seed Use</label>
+							<input type="number" name="" placeholder="0" id="certifiedBenefit" class="form-control form-control-lg" readonly>
 						</div>
 					</div>
 				</fieldset>
@@ -194,22 +175,47 @@
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	<div class="modal fade" id="bin-run-seeding-rate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 	 aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+					<h5 class="modal-title" id="exampleModalCenterTitle">Seeding Rate Calculator</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					...
+					<form class="seeding-rate-form">
+						<fieldset>
+							<div class="row">
+								<legend>Seeding Rate</legend>
+							</div>
+							<div class="row">
+								<div class="form-group col">
+
+									<label>Plant Density (plants / sq ft.)</label>
+									<input type="number" name="density" id="density" placeholder="0" value="" class="form-control form-control-lg">
+
+									<label>1,000 Kernel Weight (g)</label>
+									<input type="number" name="weight" id="weight" placeholder="0" value="" class="form-control form-control-lg">
+
+									<label>Germination Rate(%)</label>
+									<input type="number" name="germination" id="germination" placeholder="0" value="" class="form-control form-control-lg">
+
+									<label>Emergence Mortality(%)</label>
+									<input type="number" name="mortality" id="mortality" placeholder="0" value="" class="form-control form-control-lg">
+									<h4>Optimal Seeding Rate (lbs/ac)</h4>
+									<h5 id="seedingRateResult">0.0</h5>
+								</div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary" id="save-bin-run">Set Bin Run</button>
+					<button type="button" class="btn btn-primary" id="save-certified-seed">Set Certified</button>
 				</div>
 			</div>
 		</div>
