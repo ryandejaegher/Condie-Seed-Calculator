@@ -141,14 +141,12 @@ var setBinRunSeedingRate = function() {
     var seedingRate = calculateOptimalSeedingRate();
     getBinRunInputs().seedingRate.value = seedingRate;
     calculateTotalCostBinRun();
-    $('#bin-run-seeding-rate').modal('hide')
     console.log('success');
 }
 var setCertifiedSeedingRate = function() {
     var seedingRate = calculateOptimalSeedingRate();
     getCertifiedSeedInputs().certifiedSeedingRate.value = seedingRate;
     calculateTotalCostCertifiedSeed();
-    $('#bin-run-seeding-rate').modal('hide')
     console.log('success');
 }
 

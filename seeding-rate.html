@@ -16,159 +16,157 @@
 <body>
 	<div class="wrapper">
 		<div class="container-fluid">
-			<form>
-				<fieldset class="assumption">
-					<div class="row">
-						<legend class="col">Step 1 - Assumption</legend>
-					</div>
-					<div class="row">
-						<div class="col">
-							<select name="" id="zone" class="custom-select custom-select-sm">
-								<option value="" disabled selected>Choose Your Zone</option>
-								<option value=zone1>Zone 1/2</option>
-								<option value=zone3>Zone 3/4</option>
-							</select>
-						</div>
-						<div class="col">
-							<select name="" id="cropType" class="custom-select custom-select-sm">
-								<option value="" disabled selected>Choose Your Crop</option>
-								<option value="peas">Peas</option>
-								<option value="winterWheat">Winter Wheat</option>
-								<option value="fallRye">Fall Rye</option>
-								<option value="maltingBarley">Malting Barley</option>
-								<option value="foodBarley">Food Barley</option>
-								<option value="yellowFieldPea">Yellow Field Pea</option>
-								<option value="greenFieldPea">Green Field Pea</option>
-								<option value="flax">Flax</option>
-								<option value="oats">Oats</option>
-								<option value="redLentil">Red Lentil</option>
-								<option value="greenLentil">Green Lentil</option>
-								<option value="canary">Canary</option>
-								<option value="cwrs">CWRS</option>
-								<option value="cps">CPS</option>
-								<option value="cnhr">CNHR</option>
-								<option value="softWhiteSpringWheat">Soft White Spring Wheat</option>
-								<option value="canadaWesternSpecialPurposeWheat">Canada Western Special Purpose Wheat</option>
-								<option value="hardWhiteSpringWheat">Hard White Spring Wheat</option>
-								<option value="canadaWesternAmberDurum">Canada Western Amber Durum</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<select name="" id="variety" class="custom-select custom-select-sm">
-								<option value="" disabled selected>Choose Your Current Variety</option>
-							</select>
-						</div>
-						<div class="col">
-							<select name="" id="newVariety" class="custom-select custom-select-sm">
-								<option value="" disabled selected>Choose Your New Variety</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label for="">Today's Commodity Price</label><span>I'm a hint</span>
-							<input type="number" name="" placeholder="0" id="commodityPrice" class="form-control form-control-lg">
-						</div>
-						<div class="col">
-							<label for="">Your Average Yield</label>
-							<input type="number" name="" placeholder="0" id="averageYield" class="form-control form-control-lg">
-						</div>
-					</div>
-				</fieldset>
-				<fieldset>
-					<div class="row">
-						<legend class="col">Step 2 - Bin Run Seed</legend>
-					</div>
-					<div class="row">
-						<div class="col-4">
-							<p>I'm a description of what needs to be in this step</p>
-						</div>
-						<div class="form-group col-4">
-							<label for="">Seeding Rate</label>
-							<input type="number" name="" placeholder="0" id="seedingRate" class="form-control form-control-lg">
-							<label for="">Freight</label>
-							<input type="number" name="" placeholder="0" id="freightCost" class="form-control form-control-lg" value="0.75"
-							 readonly>
-						</div>
-						<div class="form-group col-4">
-							<label for="">Cleaning</label>
-							<input type="number" name="" placeholder="0" id="cleaningCost" class="form-control form-control-lg" value="1"
-							 readonly>
-							<label for="">Testing</label>
-							<input type="number" name="" placeholder="0" id="testingCost" class="form-control form-control-lg" value="0.10"
-							 readonly>
-						</div>
-					</div>
-						<div class="row justify-content-end">
-							<div class="form-group col-8">
-									<label for="">Screening Loss</label>
-									<input type="number" name="" placeholder="0" id="screeningCost" class="form-control form-control-lg" value="0.15"
-									 readonly>
-									 <label for="">Total Cost Per Acre (Bin Run)</label>
-							<input type="number" name="" placeholder="0" id="totalBinRun" class="form-control form-control-lg">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bin-run-seeding-rate">
-									Use Seeding Rate Calculator
-								</button>
+			<div class="row justify-content-center">
+				<div class="col-12">
+					<form class="px-4 pt-3 pb-3 mt-3 mb-4">
+						<fieldset>
+							<div class="row">
+								<legend class="col mb-4 font-weight-bold">Step 1 - Assumption</legend>
+							</div>
+							<div class="row">
+								<div class="col">
+									<select name="" id="zone" class="custom-select custom-select-sm mb-2">
+										<option value="" disabled selected>Choose Your Zone</option>
+										<option value=zone1>Zone 1/2</option>
+										<option value=zone3>Zone 3/4</option>
+									</select>
 								</div>
-						</div>
-					<div class="row">
-						<div class="form-group col-8">
-						</div>
-					</div>
-					<!-- Button trigger modal -->
+								<div class="col">
+									<select name="" id="cropType" class="custom-select custom-select-sm mb-2">
+										<option value="" disabled selected>Choose Your Crop</option>
+										<option value="peas">Peas</option>
+										<option value="winterWheat">Winter Wheat</option>
+										<option value="fallRye">Fall Rye</option>
+										<option value="maltingBarley">Malting Barley</option>
+										<option value="foodBarley">Food Barley</option>
+										<option value="yellowFieldPea">Yellow Field Pea</option>
+										<option value="greenFieldPea">Green Field Pea</option>
+										<option value="flax">Flax</option>
+										<option value="oats">Oats</option>
+										<option value="redLentil">Red Lentil</option>
+										<option value="greenLentil">Green Lentil</option>
+										<option value="canary">Canary</option>
+										<option value="cwrs">CWRS</option>
+										<option value="cps">CPS</option>
+										<option value="cnhr">CNHR</option>
+										<option value="softWhiteSpringWheat">Soft White Spring Wheat</option>
+										<option value="canadaWesternSpecialPurposeWheat">Canada Western Special Purpose Wheat</option>
+										<option value="hardWhiteSpringWheat">Hard White Spring Wheat</option>
+										<option value="canadaWesternAmberDurum">Canada Western Amber Durum</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<select name="" id="variety" class="custom-select custom-select-sm mb-4">
+										<option value="" disabled selected>Choose Your Current Variety</option>
+									</select>
+								</div>
+								<div class="col">
+									<select name="" id="newVariety" class="custom-select custom-select-sm mb-4">
+										<option value="" disabled selected>Choose Your New Variety</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col">
+									<label for="">Today's Commodity Price</label><span>I'm a hint</span>
+									<input type="number" name="" placeholder="$0.00" step="0.01" id="commodityPrice" class="form-control form-control-lg" required>
+								</div>
+								<div class="form-group col">
+									<label for="">Your Average Yield</label>
+									<input type="number" name="" placeholder="0" id="averageYield" class="form-control form-control-lg">
+								</div>
+							</div>
+						</fieldset>
+					</form>
+					<form class="px-4 pt-3 pb-3 mb-4">
+						<fieldset>
+							<div class="row">
+								<legend class="col mb-4 font-weight-bold">Step 2 - Bin Run Seed</legend>
+							</div>
+							<div class="row justify-content-end">
+								<div class="col-4">
+									<p>I'm a description of what needs to be in this step</p>
+								</div>
+								<div class="form-group col-4">
+									<label for="">Seeding Rate</label>
+									<input type="number" name="" placeholder="0" id="seedingRate" class="form-control form-control-lg mb-3">
+									<label for="">Freight</label>
+									<input type="number" name="" placeholder="$0.00" id="freightCost" class="form-control form-control-lg" value="0.75"
+									 readonly>
+								</div>
+								<div class="form-group col-4">
+									<label for="">Cleaning</label>
+									<input type="number" name="" placeholder="$0.00" id="cleaningCost" class="form-control form-control-lg mb-3" value="1.00"
+									 readonly>
+									<label for="">Testing</label>
+									<input type="number" name="" placeholder="$0.00" id="testingCost" class="form-control form-control-lg" value="0.10"
+									 readonly>
+								</div>
+								<div class="form-group col-8">
+									<label for="">Screening Loss</label>
+									<input type="number" name="" placeholder="$0.00" id="screeningCost" class="form-control form-control-lg mb-4"
+									 value="0.15" readonly>
+									<label for="">Total Cost Per Acre (Bin Run)</label>
+									<input type="number" name="" placeholder="$0.00" id="totalBinRun" class="form-control form-control-lg mb-3">
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bin-run-seeding-rate">
+										Use Seeding Rate Calculator
+									</button>
+								</div>
+							</div>
 
-				</fieldset>
-				<hr>
-				<fieldset>
-					<div class="row">
-						<legend class="col">Step 3 - Certified Seed</legend>
-					</div>
-					<div class="row align-items-start">
-						<div class="col-4">
-							<p>I'm a description of what needs to be in this step</p>
-						</div>
-						<div class="form-group col-4">
-							<label>New Seed Cost</label>
-							<input type="number" name="" placeholder="0" id="certifiedSeedPrice" class="form-control form-control-lg">
-						</div>
-						<div class="form-group col-4">
-							<label>Seeding Rate</label>
-							<input type="number" name="" placeholder="0" id="certifiedSeedingRate" class="form-control form-control-lg">
-						</div>
-					</div>
-					<div class="row justify-content-end">
-						<div class="form-group col-8">
-							<label for="">Genetic Gain of Certified Seed</label>
-							<input type="number" name="" placeholder="0" id="economicGain" class="form-control form-control-lg">
-						</div>
-					</div>
-					<div class="row justify-content-end">
-						<div class="form-group col-8">
-							<label for="">Total Cost Per Acre (Certified Seed)</label>
-							<input type="number" name="" placeholder="0" id="totalCertifiedSeed" class="form-control form-control-lg"
-							 data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bin-run-seeding-rate">
-								Use Seeding Rate Calculator
-							</button>
-						</div>
-					</div>
-					<!-- Button trigger modal -->
-				</fieldset>
-				<hr>
-				<fieldset>
-					<div class="row">
-						<legend class="col">Step 4 - Results</legend>
-					</div>
-					<div class="row">
-						<div class="form-group col">
-							<label for="">$ Benefit of Certified Seed Use</label>
-							<input type="number" name="" placeholder="0" id="certifiedBenefit" class="form-control form-control-lg" readonly>
-						</div>
-					</div>
-				</fieldset>
-			</form>
+							<!-- Button trigger modal -->
+
+						</fieldset>
+					</form>
+					<form class="px-4 pt-3 pb-3 mb-4">
+						<fieldset>
+							<div class="row">
+								<legend class="col mb-4 font-weight-bold">Step 3 - Certified Seed</legend>
+							</div>
+							<div class="row justify-content-end">
+								<div class="col-4">
+									<p>I'm a description of what needs to be in this step</p>
+								</div>
+								<div class="form-group col-4">
+									<label>New Seed Cost</label>
+									<input type="number" name="" placeholder="$0.00" step="0.01" pattern='\d+(\.\d{2})?' id="certifiedSeedPrice" class="form-control form-control-lg">
+								</div>
+								<div class="form-group col-4">
+									<label>Seeding Rate</label>
+									<input type="number" name="" placeholder="0" id="certifiedSeedingRate" class="form-control form-control-lg">
+								</div>
+								<div class="form-group col-8">
+									<label for="">Genetic Gain of Certified Seed</label>
+									<input type="number" name="" placeholder="0" id="economicGain" class="form-control form-control-lg mb-4">
+									<label for="">Total Cost Per Acre (Certified Seed)</label>
+									<input type="number" name="" placeholder="$0.00" id="totalCertifiedSeed" class="form-control form-control-lg mb-3"
+									 data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bin-run-seeding-rate">
+										Use Seeding Rate Calculator
+									</button>
+								</div>
+							</div>
+							<!-- Button trigger modal -->
+						</fieldset>
+					</form>
+					<form class="px-4 pt-3 pb-3 mb-4">
+						<fieldset>
+							<div class="row">
+								<legend class="col mb-4 font-weight-bold">Step 4 - Results</legend>
+							</div>
+							<div class="row">
+								<div class="form-group col">
+									<label for="">$ Benefit of Certified Seed Use</label>
+									<input type="number" name="" placeholder="0.00" id="certifiedBenefit" class="form-control form-control-lg"
+									 readonly>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -179,32 +177,27 @@
 	 aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalCenterTitle">Seeding Rate Calculator</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
+
 				<div class="modal-body">
-					<form class="seeding-rate-form">
+					<form class="seeding-rate-form px-4 pt-2 pb-3 mb-4">
 						<fieldset>
 							<div class="row">
-								<legend>Seeding Rate</legend>
+								<legend class="col mb-3 font-weight-bold">Seeding Rate Calculator</legend>
 							</div>
 							<div class="row">
 								<div class="form-group col">
 
 									<label>Plant Density (plants / sq ft.)</label>
-									<input type="number" name="density" id="density" placeholder="0" value="" class="form-control form-control-lg">
+									<input type="number" name="density" id="density" placeholder="0" value="" class="form-control form-control-lg mb-3">
 
 									<label>1,000 Kernel Weight (g)</label>
-									<input type="number" name="weight" id="weight" placeholder="0" value="" class="form-control form-control-lg">
+									<input type="number" name="weight" id="weight" placeholder="0" value="" class="form-control form-control-lg mb-3">
 
 									<label>Germination Rate(%)</label>
-									<input type="number" name="germination" id="germination" placeholder="0" value="" class="form-control form-control-lg">
+									<input type="number" name="germination" id="germination" placeholder="0" value="" class="form-control form-control-lg mb-3">
 
 									<label>Emergence Mortality(%)</label>
-									<input type="number" name="mortality" id="mortality" placeholder="0" value="" class="form-control form-control-lg">
+									<input type="number" name="mortality" id="mortality" placeholder="0" value="" class="form-control form-control-lg mb-3">
 									<h4>Optimal Seeding Rate (lbs/ac)</h4>
 									<h5 id="seedingRateResult">0.0</h5>
 								</div>
