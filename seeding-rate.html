@@ -35,58 +35,58 @@
 								<legend class="col mb-4 font-weight-bold">Step 1 - Assumption</legend>
 							</div>
 							<div class="row">
-								<div class="col-4">
+								<div class="col-sm-4">
 									<p>We need your insight. What variety you currently growing and what variety are we comparing to. Give us
 										insight into your local average yield and marketing opportunities.</p>
 								</div>
 								<div class="col">
 									<div class="row">
-										<div class="col">
-											<select name="" id="zone" class="custom-select custom-select-sm mb-2">
+										<div class="col-sm">
+											<select name="" id="zone" class="form-control form-control-sm mb-2">
 												<option value="" disabled selected>Choose Your Zone</option>
 												<option value=zone1>Zone 1/2</option>
 												<option value=zone3>Zone 3/4</option>
 											</select>
-											<select name="" id="variety" class="custom-select custom-select-sm mb-4">
+											<select name="" id="variety" class="form-control form-control-sm mb-4">
 												<option value="" disabled selected>Choose Your Current Variety</option>
 											</select>
 										</div>
-										<div class="col">
-											<select name="" id="cropType" class="custom-select custom-select-sm mb-2">
+										<div class="col-sm">
+											<select name="" id="cropType" class="form-control form-control-sm mb-2">
 												<option value="" disabled selected>Choose Your Crop</option>
-												<option value="peas">Peas</option>
-												<option value="winterWheat">Winter Wheat</option>
-												<option value="fallRye">Fall Rye</option>
-												<option value="maltingBarley">Malting Barley</option>
-												<option value="foodBarley">Food Barley</option>
-												<option value="yellowFieldPea">Yellow Field Pea</option>
-												<option value="greenFieldPea">Green Field Pea</option>
-												<option value="flax">Flax</option>
-												<option value="oats">Oats</option>
-												<option value="redLentil">Red Lentil</option>
-												<option value="greenLentil">Green Lentil</option>
-												<option value="canary">Canary</option>
-												<option value="cwrs">CWRS</option>
-												<option value="cps">CPS</option>
-												<option value="cnhr">CNHR</option>
-												<option value="softWhiteSpringWheat">Soft White Spring Wheat</option>
-												<option value="canadaWesternSpecialPurposeWheat">Canada Western Special Purpose Wheat</option>
-												<option value="hardWhiteSpringWheat">Hard White Spring Wheat</option>
-												<option value="canadaWesternAmberDurum">Canada Western Amber Durum</option>
+												<option value="peas" data-bushel-weight="60">Peas</option>
+												<option value="winterWheat" data-bushel-weight="60">Winter Wheat</option>
+												<option value="fallRye" data-bushel-weight="56">Fall Rye</option>
+												<option value="maltingBarley" data-bushel-weight="48">Malting Barley</option>
+												<option value="foodBarley" data-bushel-weight="48">Feed Barley</option>
+												<option value="yellowFieldPea" data-bushel-weight="60">Yellow Field Pea</option>
+												<option value="greenFieldPea" data-bushel-weight="60">Green Field Pea</option>
+												<option value="flax" data-bushel-weight="56">Flax</option>
+												<option value="oats" data-bushel-weight="34">Oats</option>
+												<option value="redLentil" data-bushel-weight="60">Red Lentil</option>
+												<option value="greenLentil" data-bushel-weight="60">Green Lentil</option>
+												<option value="canary" data-bushel-weight="50">Canary</option>
+												<option value="cwrs" data-bushel-weight="60">Canadian Western Red Spring</option>
+												<option value="cps" data-bushel-weight="60">Canada Prairie Spring Red</option>
+												<option value="cnhr" data-bushel-weight="60">Canada Northern Hard Red</option>
+												<option value="softWhiteSpringWheat" data-bushel-weight="60">Soft White Spring Wheat</option>
+												<option value="canadaWesternSpecialPurposeWheat" data-bushel-weight="60">Canada Western Special Purpose Wheat</option>
+												<option value="hardWhiteSpringWheat" data-bushel-weight="60">Hard White Spring Wheat</option>
+												<option value="canadaWesternAmberDurum" data-bushel-weight="60">Canada Western Amber Durum</option>
 											</select>
-											<select name="" id="newVariety" class="custom-select custom-select-sm mb-4">
+											<select name="" id="newVariety" class="form-control form-control-sm mb-4">
 												<option value="" disabled selected>Choose Your New Variety</option>
 											</select>
 										</div>
 									</div>
 									<div class="row">
-										<div class="form-group col">
-											<label for="">Today's Commodity Price</label>
+										<div class="form-group col-sm">
+											<label for="">Today's Commodity Price ($/bu)</label>
 											<input type="number" name="" placeholder="$0.00" step="0.01" id="commodityPrice" class="form-control form-control-lg"
 											 required>
 										</div>
-										<div class="form-group col">
-											<label for="">Your Average Yield</label>
+										<div class="form-group col-sm">
+											<label for="">Your Average Yield (bu/acre)</label>
 											<input type="number" name="" placeholder="0" id="averageYield" class="form-control form-control-lg">
 										</div>
 									</div>
@@ -109,27 +109,27 @@
 								<div class="col">
 									<div class="row">
 										<div class="form-group col-sm-6">
-											<label for="">Seeding Rate</label>
+											<label for="">Seeding Rate (bu/acre)</label>
 											<input type="number" name="" placeholder="0" id="seedingRate" class="form-control form-control-lg mb-3">
 											<label for="">Freight ($/bu)</label>
-											<input type="number" name="" placeholder="$0.00" id="freightCost" class="form-control form-control-lg" value="0.75"
-											 data-toggle="tooltip" data-placement="top" title="Freight ($/bus)= cost of moving grain to and from cleaning facility and screenings"
+											<input type="number" name="" placeholder="$0.00" id="freightCost" class="form-control form-control-lg" value="0.82"
+											 data-toggle="tooltip" data-placement="top" title="Freight ($/bu)= Moving grain and screenings to processor. 1000 bu x $15/MT"
 											 readonly>
 										</div>
 										<div class="form-group col-sm-6">
 											<label for="">Cleaning ($/bu)</label>
 											<input type="number" name="" placeholder="$0.00" id="cleaningCost" class="form-control form-control-lg mb-3"
-											 value="1.00" data-toggle="tooltip" data-placement="top" title="Cleaning ($/bu) = cost of cleaning seed"
+											 value="1.00" data-toggle="tooltip" data-placement="top" title="Cleaning ($/bu) = Cost of cleaning seed"
 											 readonly>
-											<label for="">Testing</label>
-											<input type="number" name="" placeholder="$0.00" id="testingCost" class="form-control form-control-lg" value="0.10"
-											 data-toggle="tooltip" data-placement="top" title="Seed Analysis (Testing) = germination and disease testing - approx $185/320 bus"
+											<label for="">Testing ($/bu)</label>
+											<input type="number" name="" placeholder="$0.00" id="testingCost" class="form-control form-control-lg" value="0.15"
+											 data-toggle="tooltip" data-placement="top" title="Seed Analysis (Testing) = Germination and disease testing - approx $145/1000 bus"
 											 readonly>
 										</div>
 										<div class="form-group col-sm">
-											<label for="">Screening Loss</label>
+											<label for="">Screening Loss ($/bu)</label>
 											<input type="number" name="" placeholder="$0.00" id="screeningCost" class="form-control form-control-lg mb-4"
-											 value="0.15" data-toggle="tooltip" data-placement="top" title="Screening Loss = grade loss on screenings - (20% clean out = 80 bus x $0.75/bus/320 bus)"
+											 value="0.15" data-toggle="tooltip" data-placement="top" title="Grade loss on screenings = (15% clean out at $1.00 per bu / 1000 bu)"
 											 readonly>
 											<label for="">Total Cost Per Acre (Bin Run)</label>
 											<input type="number" name="" placeholder="$0.00" id="totalBinRun" class="form-control form-control-lg mb-3">
@@ -160,21 +160,21 @@
 								<div class="col-8">
 									<div class="row">
 										<div class="form-group col-sm-6">
-											<label>New Seed Cost</label>
+											<label>New Seed Cost ($/bu)</label>
 											<input type="number" name="" placeholder="$0.00" step="0.01" id="certifiedSeedPrice" class="form-control form-control-lg">
 										</div>
 										<div class="form-group col-sm-6">
-											<label>Seeding Rate</label>
+											<label>Seeding Rate (bu/acre)</label>
 											<input type="number" name="" placeholder="0" id="certifiedSeedingRate" class="form-control form-control-lg">
 
 										</div>
 										<div class="form-group col-sm">
-											<label for="">Genetic Gain of Certified Seed</label>
+											<label for="">Genetic Gain of Certified Seed (%)</label>
 											<input type="number" name="" placeholder="0" id="economicGain" class="form-control form-control-lg mb-4"
 											 data-toggle="tooltip" data-placement="top" title="Economic Gain of Certified Seed = % increased yield by using certified over bin run seed. Due to purity of seed, uniform maturity, disease tolerance and standablity">
 											<label for="">Total Cost Per Acre (Certified Seed)</label>
 											<input type="number" name="" placeholder="$0.00" id="totalCertifiedSeed" class="form-control form-control-lg mb-3"
-											 data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+											 >
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bin-run-seeding-rate">
 												Use Seeding Rate Calculator
 											</button>
@@ -197,8 +197,8 @@
 								<div class="col">
 									<div class="row">
 										<div class="form-group col">
-											<label for="">$ Benefit of Certified Seed Use</label>
-											<input type="number" name="" placeholder="0.00" id="certifiedBenefit" class="form-control form-control-lg mb-4"
+											<label for="">Benefit of Certified Seed Use ($/acre)</label>
+											<input type="number" name="" placeholder="$0.00" id="certifiedBenefit" class="form-control form-control-lg mb-4"
 											 readonly>
 											 <p>How does it compare? Do the gains in genetic potential outweigh the cost of Certified Seed? Maybe gains in
 													germination result in a reduced seeding rate offering savings.</p>

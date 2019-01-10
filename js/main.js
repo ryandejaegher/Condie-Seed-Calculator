@@ -45,8 +45,8 @@
         var calculateTotalCostBinRun = function () {
             //Total Bin Run = seedingRate * (commodityPrice + cleaningCost + freightCost + testingCost + screeningCost)
             var inputs = getBinRunInputValues();
-            var totalBinRun = (inputs.seedingRate * inputs.commodityPrice) + inputs.cleaningCost + inputs.freightCost + inputs.testingCost +
-                inputs.screeningCost;
+            var totalBinRun = inputs.seedingRate * (inputs.commodityPrice + inputs.cleaningCost + inputs.freightCost + inputs.testingCost +
+                inputs.screeningCost);
             if (totalBinRun < 10) {
                 inputs.totalBinRun.value = totalBinRun.toPrecision(3);
             } else {
@@ -140,7 +140,7 @@
                 inputs.certifiedBenefit.value = 0;
                 return;
             } else {
-                var varietyDifference = (checkVariety().value / 100 - checkNewVariety().value / 100) + (inputs.economicGain / 100);
+                var varietyDifference = (checkNewVariety().value / 100 - checkVariety().value / 100) + (inputs.economicGain / 100);
                 var result = (calculateTotalCostBinRun() - calculateTotalCostCertifiedSeed()) + ((varietyDifference * inputs.averageYield) * getBinRunInputValues().commodityPrice);
                 if (result < 10) {
                 inputs.certifiedBenefit.value = result.toPrecision(3);
@@ -152,13 +152,13 @@
 
         var setBinRunSeedingRate = function () {
             var seedingRate = calculateOptimalSeedingRate();
-            getBinRunInputs().seedingRate.value = seedingRate;
+            getBinRunInputs().seedingRate.value = (seedingRate/getBushelWeight()).toPrecision(4);
             calculateTotalCostBinRun();
             console.log('success');
         }
         var setCertifiedSeedingRate = function () {
             var seedingRate = calculateOptimalSeedingRate();
-            getCertifiedSeedInputs().certifiedSeedingRate.value = seedingRate;
+            getCertifiedSeedInputs().certifiedSeedingRate.value = seedingRate/getBushelWeight().toPrecision(4);
             calculateTotalCostCertifiedSeed();
             console.log('success');
         }
@@ -180,6 +180,11 @@
             var cropDropDown = qs('#cropType');
             return cropDropDown.selectedOptions[0].value;
         };
+
+        var getBushelWeight = function () {
+            var cropDropDown = qs('#cropType');
+            return parseInt(cropDropDown.selectedOptions[0].dataset.bushelWeight)
+        }
 
         //Gets the variety dropdown 
         var checkVariety = function () {
