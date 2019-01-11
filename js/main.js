@@ -152,13 +152,13 @@
 
         var setBinRunSeedingRate = function () {
             var seedingRate = calculateOptimalSeedingRate();
-            getBinRunInputs().seedingRate.value = (seedingRate/getBushelWeight()).toPrecision(4);
+            getBinRunInputs().seedingRate.value = (seedingRate/getBushelWeight()).toFixed(1);
             calculateTotalCostBinRun();
             console.log('success');
         }
         var setCertifiedSeedingRate = function () {
             var seedingRate = calculateOptimalSeedingRate();
-            getCertifiedSeedInputs().certifiedSeedingRate.value = seedingRate/getBushelWeight().toPrecision(4);
+            getCertifiedSeedInputs().certifiedSeedingRate.value = seedingRate/getBushelWeight().toFixed(1);
             calculateTotalCostCertifiedSeed();
             console.log('success');
         }
@@ -204,9 +204,7 @@
         		argument to get populate the variety dropdown menu with new variety choices.
         		*/
         var updateVarietyOptions = function () {
-            if (checkCrop() === 'peas') {
-                return getVariety(cropData.peas);
-            } else if (checkCrop() === 'winterWheat') {
+            if (checkCrop() === 'winterWheat') {
                 return getVariety(cropData.winterWheat);
             } else if (checkCrop() === 'fallRye') {
                 return getVariety(cropData.fallRye);
@@ -288,20 +286,7 @@
         		******/
         //cropData holds arrays of products and includes the name, zone yield rates, and certified seeding rate
         var cropData = (function () {
-            var peas = [{
-                    name: 'AAC Carver',
-                    zone1: 101,
-                    zone3: 105,
-                    certifiedSeedingRate: 6
-                },
-                {
-                    name: 'CDC Athabasca',
-                    zone1: 109,
-                    zone3: 113,
-                    certifiedSeedingRate: 10
-                }
-            ];
-
+            
             var winterWheat = [{
                     name: 'CDC Buteo',
                     zone1: 100,
@@ -2169,7 +2154,6 @@
             ];
 
             return {
-                peas: peas,
                 winterWheat: winterWheat,
                 fallRye: fallRye,
                 maltingBarley: maltingBarley,
@@ -2242,3 +2226,23 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+
+        $('#bin-run-seeding-rate').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+          //  var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            if (button.data('tkw') === 'certified') {
+                console.log(button.data('tkw'))
+                modal.find('#save-bin-run').hide();
+                modal.find('#save-certified-seed').show();
+            } else if (button.data('tkw') === 'binRun') {
+                console.log(button.data('tkw'))
+                modal.find('#save-certified-seed').hide();
+                modal.find('#save-bin-run').show();
+            }
+            
+            //modal.find('.modal-title').text('New message to ' + recipient)
+            //modal.find('.modal-body input').val(recipient)
+          })
