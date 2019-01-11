@@ -158,7 +158,7 @@
         }
         var setCertifiedSeedingRate = function () {
             var seedingRate = calculateOptimalSeedingRate();
-            getCertifiedSeedInputs().certifiedSeedingRate.value = seedingRate/getBushelWeight().toFixed(1);
+            getCertifiedSeedInputs().certifiedSeedingRate.value = (seedingRate/getBushelWeight()).toFixed(1);
             calculateTotalCostCertifiedSeed();
             console.log('success');
         }

@@ -111,13 +111,13 @@
 										<div class="form-group col-sm-6">
 											<label for="">Seeding Rate (bu/acre)</label>
 											<input type="number" name="" placeholder="0" id="seedingRate" class="form-control form-control-lg">
-											<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+											<small id="emailHelp" class="form-text text-muted">Not sure? Calculate using our <a href="#" class=""
+												 data-toggle="modal" data-target="#bin-run-seeding-rate" data-tkw="binRun">TKW Calculator</a></small>
 										</div>
 										<div class="form-group col-sm-6">
 											<label for="">Freight ($/bu)</label>
 											<input type="number" name="" placeholder="$0.00" id="freightCost" class="form-control form-control-lg" value="0.82"
-											 data-toggle="tooltip" data-placement="top" title="Freight ($/bu)= Moving grain and screenings to processor. 1000 bu x $15/MT"
-											 >
+											 data-toggle="tooltip" data-placement="top" title="Freight ($/bu)= Moving grain and screenings to processor. 1000 bu x $15/MT">
 										</div>
 									</div>
 									<div class="row">
@@ -133,18 +133,21 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="form-group col-sm">
+										<div class="form-group col-sm-6">
 											<label for="">Screening Loss ($/bu)</label>
 											<input type="number" name="" placeholder="$0.00" id="screeningCost" class="form-control form-control-lg mb-4"
 											 value="0.15" data-toggle="tooltip" data-placement="top" title="Grade loss on screenings = (15% clean out at $1.00 per bu / 1000 bu)">
+										</div>
+										<div class="form-group col-12">
 											<label for="">Total Cost Per Acre (Bin Run)</label>
-											<input type="number" name="" placeholder="$0.00" id="totalBinRun" class="form-control form-control-lg mb-3">
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<div class="input-group-text">$</div>
+												</div>
+												<input type="number" name="" placeholder="$0.00" id="totalBinRun" class="form-control form-control-lg">
+											</div>
 										</div>
 									</div>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bin-run-seeding-rate" data-tkw="certified">
-										Use TKW Calculator
-									</button>
-
 								</div>
 							</div>
 
@@ -154,7 +157,7 @@
 						</fieldset>
 					</form>
 					<form class="px-4 pt-3 pb-3 mb-4 shadow border">
-						<fieldset>
+						<div>
 							<div class="row">
 								<legend class="col mb-4 font-weight-bold">Step 3 - Certified Seed</legend>
 							</div>
@@ -170,25 +173,34 @@
 										<div class="form-group col-sm-6">
 											<label>Seeding Rate (bu/acre)</label>
 											<input type="number" name="" placeholder="0" id="certifiedSeedingRate" class="form-control form-control-lg">
+											<small id="emailHelp" class="form-text text-muted">Not sure? Calculate using our <a href="#" class=""
+												 data-toggle="modal" data-target="#bin-run-seeding-rate" data-tkw="certified">TKW Calculator</a></small>
 										</div>
 										<div class="form-group col-sm-6">
 											<label>New Seed Cost ($/bu)</label>
 											<input type="number" name="" placeholder="$0.00" step="0.01" id="certifiedSeedPrice" class="form-control form-control-lg">
 										</div>
-										<div class="form-group col-sm">
+									</div>
+									<div class="row">
+										<div class="form-group col-sm-6">
 											<label for="">Genetic Gain of Certified Seed (%)</label>
 											<input type="number" name="" placeholder="0" value="3" id="economicGain" class="form-control form-control-lg mb-4"
 											 data-toggle="tooltip" data-placement="top" title="Economic Gain of Certified Seed = % increased yield by using certified over bin run seed. Due to purity of seed, uniform maturity, disease tolerance and standablity">
+										</div>
+										<div class="form-group col-sm-12 col-12">
 											<label for="">Total Cost Per Acre (Certified Seed)</label>
-											<input type="number" name="" placeholder="$0.00" id="totalCertifiedSeed" class="form-control form-control-lg mb-3">
-											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bin-run-seeding-rate">
-												Use TKW Calculator
-											</button>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<div class="input-group-text">$</div>
+												</div>
+												<input type="number" name="" placeholder="$0.00" id="totalCertifiedSeed" class="form-control form-control-lg">
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- Button trigger modal -->
+						</div>
+						<!-- Button trigger modal -->
 						</fieldset>
 					</form>
 					<form class="px-4 pt-3 pb-3 mb-4 shadow border">
@@ -208,8 +220,13 @@
 												genetic
 												traits that may be specific to your needs.</p>
 											<label for="">R.O.I. of Certified Seed Use ($/acre)</label>
-											<input type="number" name="" placeholder="$0.00" id="certifiedBenefit" class="form-control form-control-lg mb-4"
+											<div class="input-group">
+													<div class="input-group-prepend">
+														<div class="input-group-text">$</div>
+													</div>
+											<input type="number" name="" placeholder="$0.00" id="certifiedBenefit" class="form-control form-control-lg"
 											 readonly>
+											 </div>
 										</div>
 									</div>
 								</div>
